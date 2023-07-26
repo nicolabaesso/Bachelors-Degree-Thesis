@@ -1,4 +1,4 @@
-\section{Classi utilizzate}
+\subsection{Classi utilizzate}
 \begin{figure}[h]
     \centering
     \includegraphics[width=340pt]{ProgettazioneTecnica/ENGaming.png}
@@ -24,7 +24,7 @@ Le classi utilizzate possono essere classificate tramite il linguaggio di implem
 \end{itemize}
 Di seguito si analizzano le vari componenti con maggior dettaglio.
 \newpage
-\subsection{ENGaming}
+\subsubsection{ENGaming}
 \begin{figure}[h]
     \centering
     \includegraphics[width=340pt]{ProgettazioneTecnica/ENGamingDettaglio.png}
@@ -45,7 +45,7 @@ Contiene i seguenti metodi:
     \item exitENGaming: chiude l'applicazione.
 \end{itemize}
 \newpage
-\subsection{Schermata iniziale}
+\subsubsection{Schermata iniziale}
 \begin{figure}[h]
     \centering
     \includegraphics[width=340pt]{ProgettazioneTecnica/MainScreen.png}
@@ -68,7 +68,7 @@ Infatti, a sua volta:
     \item Ogni \emph{GamePageComponent} è relativa ad un solo \emph{GameComponent}. Contiene sia il \emph{GameComponent}, sia i pulsanti per avviare il gioco e per tornare alla schermata principale.
 \end{itemize}
 \emph{GameComponent} e \emph{RecordComponent} utilizzano anche determinate proprietà, che si elencano negli appositi paragrafi.
-\subsection{GameComponent}
+\subsubsection{GameComponent}
 \begin{figure}[h]
     \centering
     \includegraphics[width=340pt]{ProgettazioneTecnica/Game.png}
@@ -110,7 +110,7 @@ Infine, i giochi sono memorizzati nel file \emph{games.json}, con la struttura d
         }
     }
 \end{lstlisting}
-\subsection{RecordComponent}
+\subsubsection{RecordComponent}
 \begin{figure}[h]
     \centering
     \includegraphics[width=340pt]{ProgettazioneTecnica/Record.png}
@@ -143,7 +143,7 @@ I record sono memorizzati nel file \emph{records.json}, con la struttura dell'es
         }
     }
 \end{lstlisting}
-\subsection{Interfaccia di gioco}
+\subsubsection{Interfaccia di gioco}
 \begin{figure}[h]
     \centering
     \includegraphics[width=340pt]{ProgettazioneTecnica/GameInterface.png}
@@ -161,7 +161,7 @@ In particolare, utilizza:
 \end{itemize}
 Questa interfaccia viene implementata da due classi: \emph{GameControllerInterfaceComponent} e \emph{GameTouchDigitalizerInterfaceComponent}.
 \newpage
-\subsubsection{GameControllerInterfaceComponent}
+\subsubsubsection{GameControllerInterfaceComponent}
 \emph{GameControllerInterfaceComponent} rappresenta l'interfaccia di gioco per giochi che richiedono l'utilizzo del controller.\\
 Questa classe, oltre ad essere formata dagli elementi che implementa da \emph{GameInterface}, è formata da un controller. Tale controller è composto da:
 \begin{itemize}
@@ -179,7 +179,7 @@ Un esempio è la seguente figura, dove si vede un possibile layout:
     \label{fig:controller}
 \end{figure}
 % immagine mockup controller
-\subsubsection{GameTouchDigitalizerInterfaceComponent}
+\subsubsubsection{GameTouchDigitalizerInterfaceComponent}
 \emph{GameTouchDigitalizerInterfaceComponent} rappresenta l'interfaccia di gioco per giochi che richiedono l'utilizzo del touch, e permettono l'utilizzo del digitalizer.\\
 Questa classe, oltre ad essere formata dagli elementi che implementa da \emph{GameInterface}, è formata da un \emph{PauseButtonComponent} per mettere in pausa il gioco.\\
 Il \emph{PauseButtonComponent} viene configurato, prima dell'avvio, secondo i comandi previsti per il singolo gioco.\\
@@ -193,7 +193,7 @@ Un esempio è la seguente figura, dove si vede una possibile collocazione:
 \end{figure}
 % immagine mockup touch/digitalizer
 \newpage
-\subsection{Schermata di salvataggio record}
+\subsubsection{Schermata di salvataggio record}
 \begin{figure}[h]
     \centering
     \includegraphics[width=340pt]{ProgettazioneTecnica/NewRecord.png}
@@ -205,7 +205,7 @@ Alla notifica di un nuovo record, viene visualizzata la pagina \emph{NewRecordSc
 Nel caso di salvataggio del record, si passa alla pagina \emph{SaveRecordScreenComponent}, che si occupa di ricevere il nome dell'utente. Per far ciò, si avvale della classe \emph{InsertArcadeStyleNameComponent}.\\
 Tale classe, che implementa l'interfaccia \emph{InsertName}, prevede l'inserimento dei tre caratteri che compongono il nome utente scegliendo tra i caratteri disponibili, utilizzando gli appositi bottoni.\\
 \emph{SaveRecordScreenComponent} inoltre utilizza anche \emph{TimerComponent} per la gestione dell'inattività in quella determinata schermata.
-\subsection{TimerComponent}
+\subsubsection{TimerComponent}
 \begin{figure}[h]
     \centering
     \includegraphics[width=200pt]{ProgettazioneTecnica/TimerComponent.png}
@@ -215,7 +215,7 @@ Tale classe, che implementa l'interfaccia \emph{InsertName}, prevede l'inserimen
 % immagine dettaglio TimerComponent
 \emph{TimerComponent} si occupa della gestione del tempo. Il suo scopo è, dato un tempo espresso con un valore decimale, di iniziare il conteggio, e notificare quando il tempo ha raggiunto la fine.\\
 Per far questo, calcola la data di scadenza del timer partendo da quella attuale, notificando quando entrambe combaciano.
-\subsection{Gestione ENSign11}
+\subsubsection{Gestione ENSign11}
 \begin{figure}[h]
     \centering
     \includegraphics[width=340pt]{ProgettazioneTecnica/ENS11.png}
