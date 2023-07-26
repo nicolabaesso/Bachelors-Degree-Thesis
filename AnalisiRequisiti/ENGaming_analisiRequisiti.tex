@@ -14,14 +14,19 @@
     linktoc=page            % only page is linked
 }
 
+\chapter{Analisi dei requisiti}
+\label{cap:analisi-requisiti}
+
 \section{Casi d'uso}
 
-In questo capitolo si illustrano i vari casi d'uso per il progetto ENGaming.
+In questo capitolo si illustrano i vari casi d'uso per il progetto ENGaming.\\
+Per lo studio dei casi d'uso vengono utilizzati dei diagrammi, chiamati diagrammi dei casi d'uso (in inglese \emph{Use Case Diagram}).\\
+Questi diagrammi sono diagrammi dei tipo \gls{uml}, dedicati alla descrizione delle funzioni offerte da un'applicativo, descrivendoli come sono percepiti e utilizzati dagli attori che interagiscono col sistema stesso.
 
 \subsection{Attori}
 
 Essendo questo prodotto rivolto agli utenti finali, l'unico attore presente nei casi d'uso è l'utente.\\
-Non viene fatta una distinzione tra un utente generico ed un utente autenticato poichè non si prevede che l'applicativo implementi un sistema di autenticazione.
+Non viene fatta una distinzione tra un utente generico ed un utente autenticato poichè non viene previsto che l'applicativo implementi un sistema di autenticazione.
 
 \begin{figure}[h]
     \centering
@@ -437,6 +442,14 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
 \end{itemize}
 \newpage
 \section{Requisiti}
+In questa sezione vengono elencati i requisiti analizzati per l'applicativo.\\
+Le tabelle, suddivide per tipologia di requisito, forniscono le seguenti informazioni:
+\begin{itemize}
+    \item \textbf{Codice}, che indica la tipologia di requisito (tra F=funzionale, Q=qualità e V=vincolo) e il numero del requisito.
+    \item \textbf{Requisito}, dove si indica il requisito vero e proprio.
+    \item \textbf{Tipologia}, ovvero se il requisito indicato è obbligatorio oppure opzionale.
+    \item \textbf{Caso d'uso} di riferimento (solo per i requisiti funzionali).
+\end{itemize}
 \subsection{Requisiti funzionali}
 \begin{longtable}{|c|c|c|c|}
     \hline
@@ -525,8 +538,6 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
         RQ02 & \makecell{Dev'essere fornita la documentazione necessaria \\ per la manuntenzione del prodotto} & Obbligatorio\\ 
         \hline
         RQ03 & \makecell{Il prodotto dev'essere versionato e pubblicato \\ sulle piattaforme aziendali} & Obbligatorio\\
-        \hline    
-        RQ04 & \makecell{Devono essere realizzati i test d'unità e di integrità} & Opzionale\\
         \hline
     \end{longtable}
 \subsection{Requisiti di vincolo}
