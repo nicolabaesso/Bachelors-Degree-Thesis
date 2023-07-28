@@ -1,7 +1,9 @@
+\section{Progettazione}
+\label{sec:progettazione}
 \subsection{Classi utilizzate}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=340pt]{ProgettazioneTecnica/ENGaming.png}
+    \includegraphics[width=340pt]{images/prog/ENGaming.png}
     \caption{Diagramma completo delle classi utilizzate}
     \label{fig:diagrammaCompleto}
 \end{figure}
@@ -12,14 +14,22 @@ Le classi utilizzate possono essere classificate tramite il linguaggio di implem
         \item ENGaming
     \end{itemize}
     \item C++: \begin{itemize}
-        \item TouchHandler
         \item MyTablet
-        \item LibENSign11
+        \item TouchHandler
+        \item Point
+        \item ScrollMovement
+        \item TouchPacket
+        \item DigitalizerPacket
     \end{itemize}
     \item Angular: \begin{itemize}
         \item Tutte le classi "Component"
+        \item Tutte le classi "Service"
         \item GameInterface
         \item InsertName
+        \item Router
+        \item ChangeDetectorRef
+        \item DomSanitizer
+        \item ActivatedRoute
     \end{itemize}
 \end{itemize}
 Di seguito si analizzano le vari componenti con maggior dettaglio.
@@ -27,28 +37,55 @@ Di seguito si analizzano le vari componenti con maggior dettaglio.
 \subsubsection{ENGaming}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=340pt]{ProgettazioneTecnica/ENGamingDettaglio.png}
+    \includegraphics[width=340pt]{images/prog/ENGaming.png}
     \caption{Classe ENGaming}
     \label{fig:engaming}
 \end{figure}
 % immagine dettaglio ENGaming
 La classe ENGaming si occupa dell'avvio dell'applicazione.\\ Sviluppata in Electron, contiene i componenti necessari per la creazione della finestra nell'ENSign 11 (Screen, BrowserWindow) e per la comunicazione con la parte in Angular (IPCMain).\\
 Inoltre, contiene anche i moduli per la comunicazione con ENSign11.\\
-Contiene i seguenti metodi:
+Contiene:
 \begin{itemize}
-    \item readGameFile: legge dall'apposito file \emph{games.json} i giochi disponibili per l'applicativo. %da spostare in GameListComponent
-    \item readRecordsFile: legge dall'apposito file \emph{records.json} i record sinora fatti nei vari giochi. %da spostare in RecordListComponent
-    \item valuateSessionScore: manda alla classe \emph{RecordListComponent} il punteggio effettuato dall'utente in un determinato gioco, per controllare se è un record.
-    \item sendStartControllerGameEvent: invia alla classe \emph{GameControllerInterfaceComponent} il gioco da eseguire e i relativi comandi, in modo da avviarlo.
-    \item sendStartTouchDigitGameEvent: invia alla classe \emph{GameTouchDigitalizerInterfaceComponent} il gioco da eseguire e i relativi comandi, in modo da avviarlo.
-    \item sendNewRecordInsertionEvent: invia alla classe \emph{RecordListComponent} il nuovo record da salvare.
-    \item exitENGaming: chiude l'applicazione.
+    \item i metodi per interagire con l'ENSign11: \begin{itemize}
+        \item \emph{openDevice}, per aprire il device.
+        \item \emph{toggleTouchClick}, per ricevere un click.
+        \item \emph{toggleTouchDown}, per ricevere un down, ovvero l'evento di un dito appoggiato sullo schermo del device.
+        \item \emph{toggleTouchHold}, per ricevere un hold, ovvero l'evento di un dito ancora appoggiato sullo schermo del device.
+        \item \emph{toggleTouchUp}, per ricevere un touch up, ovvero l'evento di un dito sollevato dallo schermo del device.
+        \item \emph{toggleScrollTouch}, per ricevere un evento di scroll, ovvero un evento di movimento di un dito sullo schermo del device.
+        \item \emph{toggleFreeTouch}, per ricevere i pacchetti definiti nella struttura \emph{TouchPacket}.
+        \item \emph{stopTouch}, per fermare le interazioni con lo schermo del device.
+        \item \emph{toggleDigitalizer}, per ricevere i pacchetti definiti nella struttura \emph{DigitalizerPacket}.
+        \item \emph{stopDigitalizer}, per fermare le interazioni con il digitalizer.
+        \item \emph{closeDevice}, per chiudere il device.
+        \item \emph{quitDevice}, per "liberare" il device e renderlo disponibile ad altri applicativi (o ad una nuova istanza di ENGaming).
+    \end{itemize}
+    \item i metodi per l'avvio dei giochi: \begin{itemize}
+        \item \emph{startGame}: identifica la tipologia del gioco e lo inizializza.
+        \item \emph{startControllerGame}: inizializza un gioco che richiede l'uso del controller.
+        \item \emph{startTouchDigitalizerGame}: inizializza un gioco che richiede l'uso del dito o del digitalizer.
+    \end{itemize}
+    \item i metodi per interagire con un gioco che utilizza il controller: \begin{itemize}
+        \item \emph{inputEvent}, che permette l'interazione con il controller, nell'apposito componente.
+        \item \emph{createClickEvent}, che crea l'evento "click" nella pagina del gioco.
+        \item \emph{createHoldEvent}, che crea l'evento "hold" nella pagina del gioco.
+        \item \emph{createTouchUpEvent}, che crea l'evento "touch up" nella pagina del gioco.
+    \end{itemize}
+    \item i metodi per interagire con un gioco che utilizza il dito o il digitalizer: \begin{itemize}
+        \item \emph{handleFreeTchPkt}: in base allo stato del pacchetto, si decide che evento sollevare.
+        \item \emph{handleDgzPkt}: come per \emph{handleFreeTchPkt}, per il digitalizer.
+        \item \emph{createMouseDownEvent}: crea l'evento di appoggio del dito/digitalizer nel gioco.
+        \item \emph{createMouseScrollEvent}, crea l'evento di movimento del dito/digitalizer nel gioco.
+        \item \emph{createMouseUpEvent}, crea l'evento di sollevamento del dito/digitalizer nel gioco.
+    \end{itemize}
+    \item \emph{resetTouch}: ripristina il touch del device alla fine di un gioco.
+    \item \emph{exitENGaming}: chiude l'applicazione.
 \end{itemize}
 \newpage
 \subsubsection{Schermata iniziale}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=340pt]{ProgettazioneTecnica/MainScreen.png}
+    \includegraphics[width=340pt]{images/prog/MainScreen.png}
     \caption{Classi della schermata iniziale}
     \label{fig:schermataIniziale}
 \end{figure}
@@ -71,7 +108,7 @@ Infatti, a sua volta:
 \subsubsection{GameComponent}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=340pt]{ProgettazioneTecnica/Game.png}
+    \includegraphics[width=340pt]{images/prog/Game.png}
     \caption{Dettaglio della classe GameComponent}
     \label{fig:gameComponent}
 \end{figure}
@@ -113,7 +150,7 @@ Infine, i giochi sono memorizzati nel file \emph{games.json}, con la struttura d
 \subsubsection{RecordComponent}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=340pt]{ProgettazioneTecnica/Record.png}
+    \includegraphics[width=340pt]{images/prog/Record.png}
     \caption{Dettaglio della classe RecordComponent}
     \label{fig:recordComponent}
 \end{figure}
@@ -146,7 +183,7 @@ I record sono memorizzati nel file \emph{records.json}, con la struttura dell'es
 \subsubsection{Interfaccia di gioco}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=340pt]{ProgettazioneTecnica/GameInterface.png}
+    \includegraphics[width=340pt]{images/prog/GameInterface.png}
     \caption{Diagramma delle classi per l'interfaccia di gioco}
     \label{fig:gameinterface}
 \end{figure}
@@ -174,7 +211,7 @@ Infine, essendo il device target posizionato in un determinato modo, è importan
 Un esempio è la seguente figura, dove si vede un possibile layout:
 \begin{figure}[h]
     \centering
-    \includegraphics[width=340pt]{ProgettazioneTecnica/ControllerMockup.png}
+    \includegraphics[width=340pt]{images/prog/ControllerMockup.png}
     \caption{Prototipo dell'interfaccia per giochi che richiedono l'uso del controller}
     \label{fig:controller}
 \end{figure}
@@ -187,7 +224,7 @@ Infine, essendo il device target posizionato in un determinato modo, è importan
 Un esempio è la seguente figura, dove si vede una possibile collocazione:
 \begin{figure}[h]
     \centering
-    \includegraphics[width=340pt]{ProgettazioneTecnica/TouchDigitMockup.png}
+    \includegraphics[width=340pt]{images/prog/TouchDigitMockup.png}
     \caption{Prototipo dell'interfaccia per giochi che richiedono l'uso di touch/digitalizer}
     \label{fig:touchDigit}
 \end{figure}
@@ -196,7 +233,7 @@ Un esempio è la seguente figura, dove si vede una possibile collocazione:
 \subsubsection{Schermata di salvataggio record}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=340pt]{ProgettazioneTecnica/NewRecord.png}
+    \includegraphics[width=340pt]{images/prog/NewRecord.png}
     \caption{Diagramma delle classi per il salvataggio dei record}
     \label{fig:attore}
 \end{figure}
@@ -208,7 +245,7 @@ Tale classe, che implementa l'interfaccia \emph{InsertName}, prevede l'inserimen
 \subsubsection{TimerComponent}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=200pt]{ProgettazioneTecnica/TimerComponent.png}
+    \includegraphics[width=200pt]{images/prog/TimerComponent.png}
     \caption{Dettaglio della classe TimerComponent}
     \label{fig:timer}
 \end{figure}
@@ -218,7 +255,7 @@ Per far questo, calcola la data di scadenza del timer partendo da quella attuale
 \subsubsection{Gestione ENSign11}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=340pt]{ProgettazioneTecnica/ENS11.png}
+    \includegraphics[width=340pt]{images/prog/ENS11.png}
     \caption{Diagramma per la gestione dell'input da ENSign11}
     \label{fig:es11}
 \end{figure}
@@ -233,3 +270,4 @@ Per il recupero dell'input dal device ENSign11, l'applicativo si serve di tre el
         \item l'invio di uno swipe, restituendo le coordinate x e y inziali e i delta, ovvero le differenze di coordinate, di x e y. 
     \end{itemize}
 \end{itemize}
+\subsection{Struttura dei file utilizzati}

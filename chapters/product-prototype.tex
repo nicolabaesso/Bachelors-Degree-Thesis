@@ -33,7 +33,7 @@ Inoltre, si occupa della comunicazione tra il back-end e il front-end dell'appli
     \item un foglio di stile (CSS/SASS/LESS) per gli effetti grafici.
     \item un file Typescript, per definire il comportamento del componente.
 \end{itemize}
-Inoltre, permette l'utilizzo di Servizi per l'elaborazione dei dati.
+Inoltre, permette l'utilizzo di Servizi per il trasferimento di dati tra componenti.
 \subsubsection{Typescript}
 \begin{figure}[h]
     \centering
@@ -41,6 +41,9 @@ Inoltre, permette l'utilizzo di Servizi per l'elaborazione dei dati.
     \caption{Logo di Typescript}
     \label{fig:typescript}
 \end{figure}
+\gls{tsc} viene utilizzato sia da Electron che da Angular (da quest'ultimo per la definizione del comportamento di componenti e servizi).\\
+Ciò che caratterizza Typescript da Javascript è la tipizzazione delle variabili, elemento che trovo molto utile sopratutto se si è in precedenza lavorato con linguaggi di programmazione come Java e C++, come nel mio caso.\\
+I sorgenti scritti in questo linguaggio devono poi essere compilati per generare il file Javascript effettivamente letto dal browser.
 
 \subsubsection{C++}
 \begin{figure}[h]
@@ -49,6 +52,7 @@ Inoltre, permette l'utilizzo di Servizi per l'elaborazione dei dati.
     \caption{Logo di C++}
     \label{fig:cpp}
 \end{figure}
+\gls{cpp} è utilizzato per la logica relativa al device. In particolare, attraverso un driver (fornito dall'azienda), si possono rilevare le interazioni con il device (sia tramite tocco che tramite digitalizer).
 
 \subsubsection{Node-API}
 \begin{figure}[h]
@@ -57,17 +61,33 @@ Inoltre, permette l'utilizzo di Servizi per l'elaborazione dei dati.
     \caption{Logo delle Node-API}
     \label{fig:nodeapi}
 \end{figure}
+Le \gls{napi} sono utilizzate per rendere la parte in C++ "usabile" dalla parte sviluppata in Electron.\\
+Infatti, senza di esse, non sarebbe possibile utilizzare i metodi per l'interazione con il device.
 
 \subsubsection{Electron-Forge}
-
+\gls{elctrForge} viene utilizzato per creare degli installer, o dei pacchetti, a seconda del sistema operativo in cui si va a compilare il progetto.\\
+Tale strumento permette di compilare l'applicazione per Windows, Linux e MacOS, e ciò rende ENGaming un applicativo multipiattaforma.
 
 \subsection{Tecnologie e strumenti dei giochi}
-Descrizione Tecnologia 2
 
-\subsubsection{Placeholder strum}
+\subsubsection{HTML-CSS-JavaScript}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=300pt]{images/technologies/HTMLCSSJS.png}
+    \caption{Loghi di HTML, CSS e Javascript}
+    \label{fig:HTMLCSSJS}
+\end{figure}
+I giochi che ENGaming esegue sono semplici giochi eseguibili anche su browser. Per tale motivo, sono scritti con HTML per la struttura (generalmente composta da canvas), CSS per lo stile e Javascript per il gioco vero e proprio.\\
+Per avere tutte le funzionalità che l'applicativo offre, è necessario che i giochi implementino una piccola modifica (spiegata più avanti).
 
-\section{Progettazione}
-\label{sec:progettazione}
+\subsubsection{WebAssembly}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=150pt]{images/technologies/webassembly.png}
+    \caption{Logo di WebAssembly}
+    \label{fig:webassembly}
+\end{figure}
+Nel caso si volesse eseguire un classico nell'ENGaming (ad esempio, Doom), bisogna prima passare per \gls{webassembly}, in modo da renderlo eseguibile su un browser.
 
 \include{ProgettazioneTecnica/ENGaming_progettazione}
 \section{Codifica}
