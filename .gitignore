@@ -224,3 +224,9 @@ build/
 
 # produced pdf
 *thesis.pdf
+
+# more things
+*.mdj
+AnalisiRequisiti/*.pdf
+ProgettazioneTecnica/*.pdf
+*.zip
