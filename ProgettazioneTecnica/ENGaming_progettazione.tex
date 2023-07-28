@@ -96,16 +96,17 @@ All'avvio dell'applicazione, la schermata iniziale presenta tre elementi:
     \item Il pulsante per accedere alla pagina di \emph{RecordListScreenComponent}.
     \item Il pulsante per uscire dall'applicazione.
 \end{itemize}
-Come si evince dal diagramma, le parti che compongono la schermata principale sono strettamente collegate tra di loro.\\
-Infatti, a sua volta:
+Inoltre, il componente che gestisce questa schermata, ovvero \emph{MainScreenComponent}, si serve di \emph{IPCService} per le comunicazioni attraverso, appunto, il canale IPC.
+A sua volta:
 \begin{itemize}
-    \item \emph{RecordListScreenComponent} è formato da almeno una \emph{RecordListComponent}, poichè la schermata ha almeno la lista globale dei record, anche se vuota. Inoltre, utilizza il \emph{HorizontalNavbarComponent} per navigare tra una lista e l'altra.
-    \item \emph{RecordListComponent} contiene il nome della lista stessa e un IPCRenderer per la comunicazione con il resto dell'applicazione.\\ Ovviamente, contiene anche vari \emph{RecordComponent}, gestendosi il caso in cui non ci siano record presenti.
+    \item \emph{RecordListScreenComponent} è formato da almeno un \emph{RecordListComponent}, poichè la schermata ha almeno la lista globale dei record. Inoltre, utilizza il \emph{HorizontalNavbarComponent} per navigare tra una lista e l'altra.
+    \item \emph{RecordListComponent} contiene il nome della lista stessa e utilizza \emph{IPCService} per la comunicazione con il resto dell'applicazione.\\ Ovviamente, contiene anche vari \emph{RecordComponent}.
     \item \emph{GameListComponent} è formato sia dall' \emph{HorizontalNavbarComponent},\\ poichè gestisce la visualizzazione della lista di giochi disponibili, sia da almeno una \emph{GamePageComponent}, ossia da almeno una pagina relativa ad un gioco.
-    \item Ogni \emph{GamePageComponent} è relativa ad un solo \emph{GameComponent}. Contiene sia il \emph{GameComponent}, sia i pulsanti per avviare il gioco e per tornare alla schermata principale.
+    \item Ogni \emph{GamePageComponent} è relativa ad un solo \emph{GameComponent}, le cui informazioni sono caricate da GameUpdaterService. Contiene sia il \emph{GameComponent}, sia i pulsanti per avviare il gioco e per tornare alla schermata principale.
 \end{itemize}
-\emph{GameComponent} e \emph{RecordComponent} utilizzano anche determinate proprietà, che si elencano negli appositi paragrafi.
+\emph{GameComponent} e \emph{RecordComponent} utilizzano anche determinate proprietà, che si elencano negli appositi paragrafi rispettivamente in \nameref{subsec:gameComponent} e \nameref{subsec:recordComponent}.
 \subsubsection{GameComponent}
+\label{subsec:gameComponent}
 \begin{figure}[h]
     \centering
     \includegraphics[width=340pt]{images/prog/Game.png}
@@ -124,30 +125,10 @@ Un gioco viene rappresentato come:
     \item description: opzionale. Descrizione del gioco, con informazioni generali in merito. Se non sono disponibili, il campo assume valore "not_available".
     \item inputMapping: la mappatura dei controlli da utilizzare per giocare.
 \end{itemize}
-Inoltre, contiene un gameRenderer per inviare e ricevere eventi inerenti al gioco in esecuzione, e la variabile sessionScore per registrare il punteggio di gioco più alto durante la sessione.
-Infine, i giochi sono memorizzati nel file \emph{games.json}, con la struttura dell'esempio seguente:
-\begin{lstlisting}[language=json,firstnumber=1]
-    {"games": {
-            "id": "catMario",
-            "name": "Cat Mario",
-            "type": "Azione",
-            "gameURL": "https://www.cat-mario.com/",
-            "inputType": "controller",
-            "description": "Clone di Super Mario, con un gatto. Per nulla stressante!",
-            "inputMapping": "["salto: bottone 1","muovi a sinistra: leva D-Pad sinistra","muovi a destra: leva D-Pad destra"]"
-        },
-        {
-            "id": "subwaySurfers",
-            "name": "Subway Surfers",
-            "type": "Endless",
-            "gameURL": "https://subway-surfers.me/",
-            "inputType": "touchDigit",
-            "description": "not_available",
-            "inputMapping": "["inizia: tap","muovi a sinistra: swipe a sinistra","muovi a destra: swipe a destra","salto: swipe in alto","rotolata:swipe in basso"]"
-        }
-    }
-\end{lstlisting}
+Inoltre, utilizza \emph{IPCService} per inviare e ricevere eventi inerenti al gioco in esecuzione, e utilizza la variabile sessionScore per registrare il punteggio di gioco più alto durante la sessione.
+Infine, i giochi sono memorizzati nel file \emph{games.json}, della cui struttura si parlerà in \nameref{subsec:strutturaFile}. 
 \subsubsection{RecordComponent}
+\label{subsec:recordComponent}
 \begin{figure}[h]
     \centering
     \includegraphics[width=340pt]{images/prog/Record.png}
@@ -163,23 +144,8 @@ Un record viene rappresentato come:
     \item gameID: l'ID del gioco dove si è effettuato il record.
     \item dateTime: la data ed ora di conseguimento del record.
 \end{itemize}
-Come si evince dal diagramma, non è impostato il metodo per ottenere il valore di dateTime. Questo perchè ai fini dell'applicativo non è rilevante conoscere quando è stato effettuato il record (vedasi \emph{RecordListComponent}).\\
-I record sono memorizzati nel file \emph{records.json}, con la struttura dell'esempio seguente:
-\begin{lstlisting}[language=json,firstnumber=1]
-    {"records": {
-            "userName": "AAA",
-            "score": "250",
-            "gameID": "dukeNukem",
-            "dateTime":"2024-02-15 17:23"
-        },
-        {
-            "userName": "RIC",
-            "score": "420",
-            "gameID": "angryBirds",
-            "dateTime":"2024-05-19 08:23"
-        }
-    }
-\end{lstlisting}
+Come si evince dal diagramma, non è impostato il metodo per ottenere il valore di dateTime. Questo perchè ai fini dell'applicativo non è rilevante conoscere quando è stato effettuato il record (vedasi il diagramma di \emph{RecordListComponent}).\\
+I record sono memorizzati nel file \emph{records.json}, della cui struttura si parlerà sempre in \nameref{subsec:strutturaFile}.
 \subsubsection{Interfaccia di gioco}
 \begin{figure}[h]
     \centering
@@ -198,7 +164,7 @@ In particolare, utilizza:
 \end{itemize}
 Questa interfaccia viene implementata da due classi: \emph{GameControllerInterfaceComponent} e \emph{GameTouchDigitalizerInterfaceComponent}.
 \newpage
-\subsubsubsection{GameControllerInterfaceComponent}
+\paragraph{GameControllerInterfaceComponent}
 \emph{GameControllerInterfaceComponent} rappresenta l'interfaccia di gioco per giochi che richiedono l'utilizzo del controller.\\
 Questa classe, oltre ad essere formata dagli elementi che implementa da \emph{GameInterface}, è formata da un controller. Tale controller è composto da:
 \begin{itemize}
@@ -216,7 +182,7 @@ Un esempio è la seguente figura, dove si vede un possibile layout:
     \label{fig:controller}
 \end{figure}
 % immagine mockup controller
-\subsubsubsection{GameTouchDigitalizerInterfaceComponent}
+\paragraph{GameTouchDigitalizerInterfaceComponent}
 \emph{GameTouchDigitalizerInterfaceComponent} rappresenta l'interfaccia di gioco per giochi che richiedono l'utilizzo del touch, e permettono l'utilizzo del digitalizer.\\
 Questa classe, oltre ad essere formata dagli elementi che implementa da \emph{GameInterface}, è formata da un \emph{PauseButtonComponent} per mettere in pausa il gioco.\\
 Il \emph{PauseButtonComponent} viene configurato, prima dell'avvio, secondo i comandi previsti per il singolo gioco.\\
@@ -271,3 +237,42 @@ Per il recupero dell'input dal device ENSign11, l'applicativo si serve di tre el
     \end{itemize}
 \end{itemize}
 \subsection{Struttura dei file utilizzati}
+\label{subsec:strutturaFile}
+\subsubsection{Games.json}
+\begin{lstlisting}[language=json,firstnumber=1]
+    {"games": {
+            "id": "catMario",
+            "name": "Cat Mario",
+            "type": "Azione",
+            "gameURL": "https://www.cat-mario.com/",
+            "inputType": "controller",
+            "description": "Clone di Super Mario, con un gatto. Per nulla stressante!",
+            "inputMapping": "["salto: bottone 1","muovi a sinistra: leva D-Pad sinistra","muovi a destra: leva D-Pad destra"]"
+        },
+        {
+            "id": "subwaySurfers",
+            "name": "Subway Surfers",
+            "type": "Endless",
+            "gameURL": "https://subway-surfers.me/",
+            "inputType": "touchDigit",
+            "description": "not_available",
+            "inputMapping": "["inizia: tap","muovi a sinistra: swipe a sinistra","muovi a destra: swipe a destra","salto: swipe in alto","rotolata:swipe in basso"]"
+        }
+    }
+\end{lstlisting}
+\subsubsection{Records.json}
+\begin{lstlisting}[language=json,firstnumber=1]
+    {"records": {
+            "userName": "AAA",
+            "score": "250",
+            "gameID": "dukeNukem",
+            "dateTime":"2024-02-15 17:23"
+        },
+        {
+            "userName": "RIC",
+            "score": "420",
+            "gameID": "angryBirds",
+            "dateTime":"2024-05-19 08:23"
+        }
+    }
+\end{lstlisting}
