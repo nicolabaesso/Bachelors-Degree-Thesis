@@ -144,7 +144,6 @@ Un record viene rappresentato come:
     \item gameID: l'ID del gioco dove si è effettuato il record.
     \item dateTime: la data ed ora di conseguimento del record.
 \end{itemize}
-Come si evince dal diagramma, non è impostato il metodo per ottenere il valore di dateTime. Questo perchè ai fini dell'applicativo non è rilevante conoscere quando è stato effettuato il record (vedasi il diagramma di \emph{RecordListComponent}).\\
 I record sono memorizzati nel file \emph{records.json}, della cui struttura si parlerà sempre in \nameref{subsec:strutturaFile}.
 \subsubsection{Interfaccia di gioco}
 \begin{figure}[h]
@@ -158,23 +157,26 @@ Dovendo implementare due tipologie di gioco, dev'essere necessario poter creare 
 Per questo motivo, viene utilizzata l'interfaccia \emph{GameInterface}, che contiene il necessario per la corretta visualizzazione del gioco.\\
 In particolare, utilizza:
 \begin{itemize}
-    \item un \emph{TimerComponent} per la gestione della schermata di caricamento e lo stato di inattività.
-    \item un \emph{LoadingPageComponent} per la visualizzazione della schermata di caricamento.
-    \item un \emph{PausePageComponent} per visualizzare l'informazione dello stato di pausa del gioco, con le possibilità di riprenderlo o di uscire dallo stesso.
+    \item \emph{TimerComponent}, attraverso \emph{TimerService}, per la gestione della schermata di caricamento e lo stato di inattività.
+    \item \emph{LoadingPageComponent} per la visualizzazione della schermata di caricamento.
+    \item \emph{PausePageComponent} per visualizzare l'informazione dello stato di pausa del gioco, con le possibilità di riprenderlo o di uscire dallo stesso.
+    \item \emph{IPCService} per le comunicazioni tra componenti.
+    \item \emph{Router}, \emph{DomSanitizer} e \emph{ChangeDetectorRef}, per i motivi elencati in \nameref{subsec:angularServices}.
 \end{itemize}
 Questa interfaccia viene implementata da due classi: \emph{GameControllerInterfaceComponent} e \emph{GameTouchDigitalizerInterfaceComponent}.
 \newpage
 \paragraph{GameControllerInterfaceComponent}
 \emph{GameControllerInterfaceComponent} rappresenta l'interfaccia di gioco per giochi che richiedono l'utilizzo del controller.\\
-Questa classe, oltre ad essere formata dagli elementi che implementa da \emph{GameInterface}, è formata da un controller. Tale controller è composto da:
+Questa classe, oltre ad essere formata dagli elementi che implementa da \emph{GameInterface}, è formata da un controller. Il controller è composto da:
 \begin{itemize}
     \item 4 \emph{DPadButtonComponent}, che rappresentano i pulsanti per il movimento all'interno del gioco.
     \item 4 \emph{ActionButtonComponent}, che rappresentano i pulsanti per le azioni\\ all'interno del gioco.
     \item Un \emph{PauseButtonComponent} per mettere in pausa il gioco.
 \end{itemize}
-Il controller viene configurato, prima dell'avvio, secondo i comandi previsti per il singolo gioco.\\
-Infine, essendo il device target posizionato in un determinato modo, è importante che il layout venga configurato in maniera da facilitarne l'utilizzo senza prendere in mano il device.\\
-Un esempio è la seguente figura, dove si vede un possibile layout:
+Il controller viene configurato, prima dell'avvio, secondo i comandi previsti per il singolo gioco. Se uno o più pulsanti non vengono configurati per un determinato gioco, essi vengono rimossi dalla visualizzazione, al fine di non creare confusione durante l'utilizzo del gioco.\\
+Infine, essendo il device target posizionato in un determinato modo, il layout è configurato in maniera da facilitarne l'utilizzo senza prendere in mano il device.\\
+In particolare, gli \emph{ActionButtonComponent} presenti sono posizionati in modo da risultare il più possibilmente comodi per questa posizione, ispirandosi alla posizione della mano destra di un pianista.
+Un layout di esempio, adatto per questi vincoli, è nell'immagine seguente:
 \begin{figure}[h]
     \centering
     \includegraphics[width=340pt]{images/prog/ControllerMockup.png}
@@ -183,11 +185,11 @@ Un esempio è la seguente figura, dove si vede un possibile layout:
 \end{figure}
 % immagine mockup controller
 \paragraph{GameTouchDigitalizerInterfaceComponent}
-\emph{GameTouchDigitalizerInterfaceComponent} rappresenta l'interfaccia di gioco per giochi che richiedono l'utilizzo del touch, e permettono l'utilizzo del digitalizer.\\
-Questa classe, oltre ad essere formata dagli elementi che implementa da \emph{GameInterface}, è formata da un \emph{PauseButtonComponent} per mettere in pausa il gioco.\\
-Il \emph{PauseButtonComponent} viene configurato, prima dell'avvio, secondo i comandi previsti per il singolo gioco.\\
-Infine, essendo il device target posizionato in un determinato modo, è importante che il \emph{PauseButtonComponent} venga messo in modo da invadere il meno possibile lo spazio di gioco.\\
-Un esempio è la seguente figura, dove si vede una possibile collocazione:
+\emph{GameTouchDigitalizerInterfaceComponent} rappresenta l'interfaccia di gioco per giochi che richiedono l'utilizzo del touch, oppure l'utilizzo del digitalizer.\\
+Si noti come in questa classe non si richiede all'utente se scegliere un'input tramite il sistema touch o tramite il digitalizer. Questa scelta permette all'utente di utilizzare la modalità che più preferisce, senza vincolarlo.\\
+Oltre ad essere formata dagli elementi che implementa da \emph{GameInterface}, la classe è formata da un \emph{PauseButtonComponent} per mettere in pausa il gioco.\\
+Il \emph{PauseButtonComponent} viene posizionato in alto a destra, poichè l'obiettivo è di invadere il meno possibile lo spazio di gioco, in modo da non arrecare disturbo durante il gioco.\\
+La visualizzazione di tale layout è presente nella seguente figura:
 \begin{figure}[h]
     \centering
     \includegraphics[width=340pt]{images/prog/TouchDigitMockup.png}
@@ -201,13 +203,13 @@ Un esempio è la seguente figura, dove si vede una possibile collocazione:
     \centering
     \includegraphics[width=340pt]{images/prog/NewRecord.png}
     \caption{Diagramma delle classi per il salvataggio dei record}
-    \label{fig:attore}
+    \label{fig:newRecord}
 \end{figure}
 % immagine dettaglio salvataggio record
 Alla notifica di un nuovo record, viene visualizzata la pagina \emph{NewRecordScreenComponent}, dove viene chiesto all'utente se desidera salvare il record appena effettuato o non salvarlo.\\
-Nel caso di salvataggio del record, si passa alla pagina \emph{SaveRecordScreenComponent}, che si occupa di ricevere il nome dell'utente. Per far ciò, si avvale della classe \emph{InsertArcadeStyleNameComponent}.\\
+Nel caso di salvataggio del record, si passa alla pagina \emph{SaveRecordScreenComponent}, utilizzando un \emph{Router}, che si occupa di ricevere il nome dell'utente. Per far ciò, si avvale della classe \emph{InsertArcadeStyleNameComponent}.\\
 Tale classe, che implementa l'interfaccia \emph{InsertName}, prevede l'inserimento dei tre caratteri che compongono il nome utente scegliendo tra i caratteri disponibili, utilizzando gli appositi bottoni.\\
-\emph{SaveRecordScreenComponent} inoltre utilizza anche \emph{TimerComponent} per la gestione dell'inattività in quella determinata schermata.
+\emph{SaveRecordScreenComponent} inoltre utilizza anche \emph{TimerComponent} attraverso \emph{TimerService} per la gestione dell'inattività in quella determinata schermata.
 \subsubsection{TimerComponent}
 \begin{figure}[h]
     \centering
@@ -216,25 +218,44 @@ Tale classe, che implementa l'interfaccia \emph{InsertName}, prevede l'inserimen
     \label{fig:timer}
 \end{figure}
 % immagine dettaglio TimerComponent
-\emph{TimerComponent} si occupa della gestione del tempo. Il suo scopo è, dato un tempo espresso con un valore decimale, di iniziare il conteggio, e notificare quando il tempo ha raggiunto la fine.\\
-Per far questo, calcola la data di scadenza del timer partendo da quella attuale, notificando quando entrambe combaciano.
+\emph{TimerComponent}, servito in altri componenti attraverso \emph{TimerService}, si occupa della gestione del tempo.\\ 
+Il suo scopo è, dato un tempo espresso in millisecondi, di iniziare il conteggio, e notificare quando il tempo ha raggiunto la fine.\\
+Per far questo, imposta un intervallo della durata memorizzata, notificando tramite un \emph{Observable} quando scade.
 \subsubsection{Gestione ENSign11}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=340pt]{images/prog/ENS11.png}
+    \includegraphics[width=115pt]{images/prog/ENS11.png}
     \caption{Diagramma per la gestione dell'input da ENSign11}
     \label{fig:es11}
 \end{figure}
 % immagine dettaglio gestione ENSign11
-Per il recupero dell'input dal device ENSign11, l'applicativo si serve di tre elementi:
+Il device di firma, ovvero l'ENSign11, fornisce le funzioni per interagire con lo stesso attraverso una classe, chiamata \emph{MyTablet}.\\
+Questa classe permette l'interazione con il device, come l'apertura e la chiusura dello stesso. Inoltre, offre le funzioni per ottenere gli input dallo stesso.\\
+Per il recupero dell'input dal device ENSign11, \emph{MyTablet} si serve della classe \emph{TouchHandler} per il recupero di eventi click, hold, scroll...\\
+Questa classe, della quale \emph{MyTablet} ha 10 istanze (una per ogni possibile iterazione, per un massimo di 10 tocchi in contemporanea), rileva se quanto avviene sullo schermo rientra tra i seguenti eventi:
 \begin{itemize}
-    \item LibENSign11: driver del device che permette l'utilizzo del sistema touch e del digitalizer.
-    \item MyTablet: classe che si occupa dell'apertura e della chiusura del tablet, oltre all'apertura e chiusura sia del sistema touch sia del digitalizer.
-    \item TouchHandler: classe che invia alla parte Electron-Angular gli eventi. Tra gli eventi ci sono: \begin{itemize}
-        \item l'invio di un tocco semplice, restituendo le coordinate x e y del tocco.
-        \item l'invio di un tocco prolungato, sempre restituendo le coordinate x e y del tocco.
-        \item l'invio di uno swipe, restituendo le coordinate x e y inziali e i delta, ovvero le differenze di coordinate, di x e y. 
-    \end{itemize}
+    \item \textbf{Down}: il primo pacchetto che il driver "emette", indica che il dito è stato appena appoggiato sullo schermo.
+    \item \textbf{Click}: indica che il dito è stato appoggiato sullo schermo per un breve periodo di tempo.
+    \item \textbf{Scroll}: indica che il dito è ancora appoggiato sullo schermo, ma le sue coordinate hanno superato la tolleranza (impostata per evitare falsi movimenti).
+    \item \textbf{Hold}: indica che il dito è ancora appoggiato sullo schermo.
+    \item \textbf{Touch Up}: l'ultimo pacchetto che il driver "emette", indica che il dito è stato sollevato dallo schermo.
+\end{itemize}
+I punti, rappresentati da oggetti, che \emph{MyTablet} manda attraverso gli appositi metodi sono:
+\begin{itemize}
+    \item \textbf{Point}: oggetto che contiene le coordinate del punto e lo stato. Questo oggetto viene mandato per gli eventi elencati prima, ad eccezzione dell'evento \textbf{Scroll}, durante i giochi che richiedono l'uso del controller e nell'utilizzo generale dell'applicativo.
+    \item \textbf{ScrollMovement}: oggetto che contiene i punti (attraverso oggetti \emph{Point}) di inizio e fine del movimento, e le variazioni delle coordinate x e y. Questo oggetto viene mandato per l'evento \textbf{Scroll}.
+    \item \textbf{TouchPacket}: oggetto che contiene le coordinate e lo stato di tutti e 10 i tocchi. L'oggetto viene inviato durante l'esecuzione di giochi che non richiedono l'uso del controller.
+    \item \textbf{DigitalizerPacket}: oggetto che contiene le coordinate, lo stato del digitalizer e la pressione applicata dall'utente. L'oggetto viene inviato durante l'esecuzione di giochi che non richiedono l'uso del controller.
+\end{itemize}
+\subsubsection{Servizi di Angular}
+\label{subsec:angularServices}
+ENGaming utilizza i seguenti servizi, offerti da Angular, per l'esecuzione del programma:
+\begin{itemize}
+    \item \textbf{Router}: permette di essere reindirizzati da un componente ad un altro, aggiornando la vista, tramite il metodo \emph{navigate}.
+    \item \textbf{ChangeDetectorRef}: aggiorna la vista tramite il metodo \emph{detectChanges}.
+    \item \textbf{ActivatedRoute}: permette di recupare l'URL della pagina in cui ci si trova.
+    \item \textbf{ElectronService}: permette l'utilizzo dei canali IPC e delle funzioni generalmente presenti in Electron.
+    \item \textbf{DomSanitizer}: effettua il processo di "pulizia" di un URL, permettendo la visualizzazione del suo contenuto in un elemento \emph{iframe} oppure \emph{object}.
 \end{itemize}
 \subsection{Struttura dei file utilizzati}
 \label{subsec:strutturaFile}
