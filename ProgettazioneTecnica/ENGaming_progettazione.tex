@@ -259,31 +259,52 @@ ENGaming utilizza i seguenti servizi, offerti da Angular, per l'esecuzione del p
 \end{itemize}
 \subsection{Struttura dei file utilizzati}
 \label{subsec:strutturaFile}
+Come indicato in \nameref{subsec:gameComponent} e \nameref{subsec:recordComponent}, vengono utilizzati due file json, il primo contiene le informazioni sui giochi (\emph{games.json}), il secondo contiene i record effettuati (\emph{records.json}).
 \subsubsection{Games.json}
+Il file, che viene aperto da ENGaming solamente in lettura, contiene le informazioni necessarie dei giochi e delle loro relative pagine. Ne consegue che la modifica di questo file debba essere fatta manualmente.\\
+Un esempio di giochi presenti nel file è il seguente:
 \begin{lstlisting}[language=json,firstnumber=1]
-    {"games": {
+    [
+        {
             "id": "catMario",
             "name": "Cat Mario",
             "type": "Azione",
             "gameURL": "https://www.cat-mario.com/",
             "inputType": "controller",
             "description": "Clone di Super Mario, con un gatto. Per nulla stressante!",
-            "inputMapping": "["salto: bottone 1","muovi a sinistra: leva D-Pad sinistra","muovi a destra: leva D-Pad destra"]"
+            "inputMapping": [
+                "salto:A:Space",
+                "muovi a sinistra:DPad Left:Left",
+                "muovi a destra:DPad Right:Right"
+            ]
         },
         {
             "id": "subwaySurfers",
             "name": "Subway Surfers",
             "type": "Endless",
-            "gameURL": "https://subway-surfers.me/",
+            "gameURL": "src_angular/assets/games/subwaySurfers/index.html",
             "inputType": "touchDigit",
             "description": "not_available",
-            "inputMapping": "["inizia: tap","muovi a sinistra: swipe a sinistra","muovi a destra: swipe a destra","salto: swipe in alto","rotolata:swipe in basso"]"
+            "inputMapping": [
+                "inizia: tap",
+                "muovi a sinistra: swipe a sinistra",
+                "muovi a destra: swipe a destra",
+                "salto: swipe in alto",
+                "rotolata:swipe in basso"
+            ]
         }
-    }
+    ]
 \end{lstlisting}
+Dove i giochi con il controller richiedono anche la conoscenza dei tasti che il gioco richiede tramite l'utilizzo della tastiera.\\
+Inoltre, i giochi possono essere caricati con i sorgenti tramite il percorso relativo degli stessi.
+\newpage
 \subsubsection{Records.json}
+Il file contiene tutti i record effettuati nell'applicativo. Tale file non è condiviso in rete ed è unico per ogni installazione. Quindi, i record possono variare da una macchina ad un'altra.\\
+Questo è l'unico file che viene caricato da ENGaming sia per la lettura che per la scrittura, non richiedendo una scrittura manuale dei dati.\\
+Un esempio di record che il file contiene è il seguente:
 \begin{lstlisting}[language=json,firstnumber=1]
-    {"records": {
+    [
+        {
             "userName": "AAA",
             "score": "250",
             "gameID": "dukeNukem",
@@ -295,5 +316,5 @@ ENGaming utilizza i seguenti servizi, offerti da Angular, per l'esecuzione del p
             "gameID": "angryBirds",
             "dateTime":"2024-05-19 08:23"
         }
-    }
+    ]
 \end{lstlisting}
