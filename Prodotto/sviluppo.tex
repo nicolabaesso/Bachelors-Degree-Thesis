@@ -1,140 +1,61 @@
-\section{Introduzione}
-
-Il seguente documento vuole fornire tutti gli elementi per l'Installazione e la manuntenzione del prodotto software ENGaming, includendo le tecnologie utilizzate, i problemi riscontrati e i possibili miglioramenti.
-
-\subsection{ENGaming}
-
-Uno dei mercati dove opera Euronovate è quello dei device di firma grafometrica dotati di monitor da 10 pollici multi-touch.\\ 
-ENGaming punta al mondo dei multimedia e vuole permette l'utilizzo del device di firma ENSign 11 per l'intrattenimento videoludico.\\ 
-L'obiettivo è realizzare un applicativo che permetta di selezionare un videogioco da una lista di giochi pre-configurata e avviarlo assieme ad un controller virtuale.\footnote[1]{\href{https://www.assindustriavenetocentro.it/2023/stage-it}{Stage IT 2023}, azienda ESignWorld}
-
-\subsection{Device utilizzato}
-
-Come citato nella sezione precedente, il device che verrà utilizzato è l'ENSign 11, un dispositivo utilizzato principalmente per la digitalizzazione delle firme a mano, per firme biometriche e come schermo di presentazione multi-touch.\\
-Direttamente connesso al computer tramite porta USB, l'ENSign 11 è un device molto compatto con grande stabilità, livelli di sicurezza alti e dotato di un elegante design.\footnote[2]{\href{https://www.euronovategroup.com/solutions/product-map/ensign-11-ensign-nfc-hardware}{ENSign 11}, descrizione prodotto}
-
-\newpage
-\section{Installazione e configurazione dell'ambiente}
-In questa sezione si descrivono le informazioni necessarie per installare e configurare in maniera corretta l'ambiente di sviluppo.
-\subsection{Installazione}
-Per questo progetto, è necessario installare:
+\subsection{Strumenti utilizzati}
+Per lo sviluppo di ENGaming, oltre a quanto già citato in \nameref{sec:sviluppoStrum}, ho utilizzato:
 
 \begin{itemize}
-    \item NodeJS, scaricabile all'indirizzo \href{https://nodejs.org/en/download}{https://nodejs.org/en/download}. Al termine, verificarne la corretta installazione tramite i comandi \textit{node -v} e \textit{npm -v}.
-    \item TypeScript, dev'essere installato tramite \textit{npm} da terminale, tramite il comando \textit{npm install -g typescript}. L'opzione \textit{-g} installa il componente globalmente, ed è sconsigliato omettere tale parametro.
-    \item C++, nel caso si utilizzi Windows per lo sviluppo è necessario scaricare MinGW all'indirizzo \href{https://www.mingw-w64.org/downloads/}{https://www.mingw-w64.org/downloads/}. Inoltre, si consiglia di scaricare il pacchetto \textit{w64devkit}.
-    \item AngularCLI, anch'esso dev'essere installato tramite \textit{npm} da terminale, tramite il comando \textit{npm install -g angular/cli}. Verificarne la corretta isntallazione tramite il comando \textit{ng v}.
-    \item Electron, viene installato durante la prima configurazione dell'applicazione, e non è dunque necessaria l'installazione tramite \textit{npm}.
-    \item Git, scaricabile all'indirizzo \href{https://git-scm.com/downloads}{https://git-scm.com/downloads}. Verificarne la corretta installazione tramite il comando \textit{git -v}.
-    \item Un qualsiasi IDE per la modifica dei file, che si può scegliere senza alcun vincolo.
+    \item NodeJS, versione 18.16.0
+    \item Npm, versione 9.5.1
+    \item TypeScript, versione 4.9.5
+    \item C++,versione 17
+    \item AngularCLI, versione 15.2.8
+    \item Electron, versione 25.0.1
+    \item Git, versione 2.41.0
 \end{itemize}
-
-\subsection{Versioni utilizzate}
-Per lo sviluppo, sono state utilizzate le seguenti versioni dei software appena citati:
+\subsection{Ambiente di sviluppo}
+Per tenere una suddivisione chiara delle parti da sviluppare, ho impostato la cartella di lavoro secondo questa struttura:
 \begin{itemize}
-    \item NodeJS: v18.16.0
-    \item npm: v9.5.1
-    \item TypeScript: v4.9.5
-    \item AngularCLI: v15.2.8
-    \item git: v2.41.0
-    \item Visual Studio Code: v1.80
-\end{itemize}
-Altre versioni o altri software, se compatibili, possono essere utilizzati, ma si raccomanda di mantenere quelli appena citati.
-\subsection{Configurazione dell'ambiente}
-La configurazione dell'ambiente dev'essere eseguita tramite questi passi, esattamente come riportati:
-\begin{enumerate}
-    \item Clonare la repository, presente all'indirizzo \\ \href{https://us-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/ENGAMING/browse?region=us-west-2}{https://us-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/ENGAMING}, utilizzando Git e il comando \textit{git clone}. Per fare tale azione è necessario avere i permessi di accesso alla repository.
-    \item Installare tutti i pacchetti npm richiesti. Per farlo, è necessario eseguire queste azioni: \begin{enumerate}
-        \item Aprire un terminale e posizionarsi dentro la cartella \textit{ENGaming}.
-        \item Eseguire il comando \textit{npm install} o \textit{npm i}. Tale comando installa tutti i pacchetti necessari, elencati nel file \textit{package.json}.
-    \end{enumerate}
-\end{enumerate}
-Nel caso \textit{npm start} riporti un errore relativo al file \textit{records.json} non trovato, creare la seguente struttura:
-\begin{itemize}
-    \item dist \begin{itemize}
-        \item dist \begin{itemize}
-            \item src_angular \begin{itemize}
-                \item assets
-            \end{itemize}
+    \item src_angular \begin{itemize}
+        \item app \begin{itemize}
+            \item COMPONENTI
+            \item <<servizi>>
+            \item <<interfacce>>
         \end{itemize}
+        \item assets \begin{itemize}
+            \item games \begin{itemize}
+                \item GIOCHI
+            \end{itemize}
+            \item previews \begin{itemize}
+                \item <<immagini>>
+            \end{itemize}
+            \item games.json
+            \item records.json
+            \item <<altri file>>
+        \end{itemize}
+        \item index.html
+        \item main.ts
+        \item <<altri file>>
+    \end{itemize}
+    \item src_electron \begin{itemize}
+        \item App.ts
+        \item ENGaming.ts
+    \end{itemize}
+    \item src_module \begin{itemize}
+        \item ES11LIB
+        \item ES11LOADER
+        \item LIBUSB
+        \item <<altri file>>
     \end{itemize}
 \end{itemize}
-infine, recuperare il file da \textit{src_angular/assets} ed inserire il file dentro all'ultima cartella della struttura appena creata.
-\section{Utilizzo, compilazione e debug}
-\subsection{Aggiunta e rimozione dei giochi}
-Non essendo implementato un sistema di aggiunta o rimozione dei giochi, questa operazione dev'essere fatta a mano.\\
-Quel che serve fare è aprire il file \textit{games.json}, situato in \textit{src_angular/assets}, ed inserire un nuovo gioco utilizzando la struttura presente. Per la rimozione di un gioco, è sufficiente eliminarne la voce dal file, ed eventualmente eliminare i file di gioco presenti.\\
-Con l'eliminazione di un gioco, sarebbe opportuno eliminare i record ad esso associati. Tale operazione non è automatizzata, e per farlo è necessario eliminare manualmente i singoli record associati al gioco dal file \textit{records.json}, che si trova nella stessa cartella.\\
-Ogni modifica a questo file deve essere seguito dalla ricompilazione della parte frontend, altrimenti l emodifiche effettuate non saranno visibili.
-\subsection{Compilazione}
-Per la compilazione dell'applicativo, è necessario eseguire i seguenti comandi, indipendentemente dall'ordine:
+Dove:
 \begin{itemize}
-    \item \textit{npm run buildFrontend}. Con questo comando si crea la build della parte in Angular e si compila la parte in Electron, creata in Typescript.
-    \item \textit{npm run buildES11Loader}. Con questo comando, viene compilata la parte in C++ per l'utilizzo con le parti in Electron ed Angular.
+    \item COMPONENTI indica le cartelle di tutti i componenti, di cui la struttura si è precedentemente illustrata in \nameref{subsec:angular}.
+    \item <<servizi>> indica i file dei servizi, che sono dotati solo di un file Typescript per la definizione dei comportamenti.
+    \item <<interfacce>> indica i file delle interfacce, dotati solo di un file Typescript per la definizione delle stesse.
+    \item GIOCHI indica le cartelle dove sono presenti i giochi, con i relativi sorgenti.
+    \item <<immagini>> indica le immagini utilizzate dall'applicativo.
+    \item ES11LIB indica la cartella che contiene i driver per il funzionamento dell'ENSign11, ricevuti direttamente dall'azienda.
+    \item ES11LOADER indica la cartella dove risiedono i file per la gestione dell'ENSign11, ai quali ho personalmente lavorato.
+    \item LIBUSB indica la cartella dove risiede la libreria usata dai file contenuti in ES11LIB.
+    \item <<altri file>> indica altri file, presenti nelle cartelle ma di minore interesse (ad esempio, file .gitignore)
 \end{itemize}
-Da notare come sia possibile effettuare la compilazione di ogni singola parte del frontend:
-\begin{itemize}
-    \item \textit{ng build --base-href ./}: creazione della build della parte in Angular.
-    \item \textit{npm run buildTS}. compilazione della parte in typescript.
-\end{itemize}
-Oppure, con il comando \textit{buildENGaming}, si può direttamente compilare l'intera applicazione. Ciò permette la ricompilazione sia delle sole parti interessate ad eventuali modifiche, sia alla ricompilazione completa dell'applicativo.
-\subsection{Debug}
-Prima di iniziare le operazioni di debug, è necessario compilare il modulo in C++ per tale scopo.\\ Per ciò, basta utilizzare il comando \textit{npm run buildES11_debug}.\\ Nel caso fossero presenti delle compilazioni in Release, sarà necessario eliminare la cartella, per evitare comportamenti indesiderati.\\\\
-Come per le altre istruzioni di compilazione, nel caso si debba ricompilare anche la parte in Electron e/o la parte in Angular, si può utilizzare il comando \textit{npm run buildENGamingDebug}.\\\\
-Dopo aver effettuato la compilazione, si può effettuare il debug. Le impostazioni di debug variano in base all'IDE scelto, in Visual Studio Code si può utilizzare la seguente configurazione:
-\begin{lstlisting}[language=json,firstnumber=1]
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Debug Main Process",
-            "type": "node",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
-            "windows": {
-                "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
-            },
-            "args": [
-                "."
-            ],
-            "outputCapture": "std"
-        },
-        {
-            "name": "Debug addon",
-            "type": "cppvsdbg",
-            "request": "attach"
-        }
-    ]
-}
-\end{lstlisting}
-Il primo comando permette di effettuare il debug della pate in Electron all'interno di Visual Studio Code, mentre il secondo comando permette di attaccarsi ad un processo. Attaccandosi al processo di Electron, si può fare il debug del modulo compilato, e quindi della parte in C++.
-\subsection{Distribuzione con Electron Forge}
-Per creare dei pacchetti distribuibili ed installabili, è necessario utilizzare Electron Forge (\href{https://www.electronforge.io/}{https://www.electronforge.io/}). Importante effettuare questa operazione \textbf{dopo} aver fatto una compilazione completa nella macchina per il build. Inoltre, accertarsi di rimuovere la cartella .angular generata dalle compilazioni del frontend, in quanto appesantisce inutilmente l'applicazione.\\
-Quando si è pronti, basta eseguire il comando \textit{npm run make}. Il comando si preoccuperà di riunire tutte le dipendenze in uno o più pacchetti, in base al sistema operativo di cui si sta facendo la distribuzione.\\\\
-\textbf{Nota bene!}\\
-Nel caso Electron-Forge fallisca la generazione del pacchetto rpm, ma porti a compimento la generazione del pacchetto deb, si può utilizzare \textit{Alien}\footnote[2]{\href{https://manpages.debian.org/unstable/alien/alien.1p.en.html}{Alien}, pagina di descrizione di Debian} per ottenere il pacchetto rpm partendo dal pacchetto deb. Per far ciò, è sufficiente digitare \textit{sudo alien --to-rpm nomeFile.deb}, con nomeFile il nome del pacchetto deb.
-\newpage
-\section{Problemi noti}
-In questa sezione si elencano i problemi riscontrati con il prodotto, indicando se tale problematica è stata risolta con successo oppure arginata in maniera temporanea.
-\subsection{Caricamento non sempre "veritiero"}
-Le classi \textit{GameControllerInterfaceComponent} e \\ \textit{GameTouchDigitalizerInterfaceComponent} utilizzano un componente per la gestione del tempo, chiamato \textit{TimerComponent}, tramite Dependency Injection (e dunque utilizzando un Service, chiamato \textit{TimerService}).\\
-Tale componente permette solo di sapere se è stato inizializzato o meno, e se viene effettuato un click l'elemento observable che fornisce risulta inizializzato.\\
-Per questa problematica non è stata posta una soluzione, ma una possibile può riguardare lo spostamento della logica relativa al tempo nella parte in Electron, come già accade per il timeout di inattività.
-\subsection{Controller rimane bloccato con due click contemporaneamente}
-In \textit{GameControllerInterfaceComponent} viene impiegato l'utilizzo di un controller, fornito dalla classe \textit{ControllerComponent} tramite composizione. Su tale controller, se si effettua un click su due pulsanti contemporaneamente, la parte in Electron non riconosce un eventuale sollevamento del dito, simulando quindi un evento di keydown prolungato senza simulare un evento di keyup. Tale problematica, attualmente non completamente risolta, può dipendere dagli eventi di click() presenti nella parte di Angular, che non fanno riconoscere un eventuale sollevamento del dito.
-\newpage
-\section{Possibili miglioramenti}
-\subsection{Interazione tramite il digitalizer}
-Allo stato attuale, l'applicazione utilizza il digitalizer solo durante l'utilizzo dei giochi che ne implementano l'uso.\\ Ne segue che, per esempio, non si può utilizzare il digitalizer nel menù principale.\\
-Un miglioramento possibile potrebbe riguardare proprio questo, ovvero l'implementazione di gestures da parte del digitalizer, in modo da utilizzarlo anche in altre aree dell'applicazione.\\
-Per tale miglioramento, si deve anche prevedere il blocco del digitalizer durante l'esecuzione di giochi che utilizzano il controller, in quanto non necessario.
-\subsection{Miglior struttura del file records.json}
-Il file \textit{records.json} salva ogni singolo record con una determinata struttura, senza raggrupparli per gioco e senza essere già ordinati. Un possibile miglioramento sarebbe rivedere la struttura del file, raggruppando i file per gioco oppure salvandoli già in ordine decrescente (dal punteggio più alto).
-\subsection{Miglior algoritmo di ordinamento}
-Attualmente, i record presenti nel file \textit{records.json} non sono salvati in ordine, dunque vengono ordinati "al momento", ovvero quando ne viene richiesta la visualizzazione. Attualmente l'algoritmo che ordina questi record è un'implementazione del Bubble Sort, con tempo medio di $\theta(N^2)$.\\ Ciò può risultare costoso con grandi mole di record, evento molto probabile per questa appicazione.\\
-Dunque, sarebbe ottimale ridurre il tempo di esecuzione il più possibile al $\theta(N)$, ancora meglio se si riesce ad arrivare ad $\theta(\log(N))$.
-\subsection{Multipli controller}
-Attualmente, i giochi con il controller utilizzano lo stesso controller, che "manca" di alcuni tasti se non utilizzati. Sarebbe interessante utilizzare un controller diverso per ogni gioco, magari con caratteristiche completamente diverse. Per esempio, implementare anche un controller simil NES e un controller simil Atari.
-\subsection{Code Refactor}
-Sarebbe opportuno effettuare un refactor per l'individuazione di codice non necessario ai fini dell'applicazione, permettendo un alleggerimento dei sorgenti.
+Nello stesso livello delle cartelle principali, sono presenti anche i file di configurazione, in particolare i file \emph{package.json},\emph{angular.json}, \emph{tsconfig.json} e \emph{forge.config.js}.\\
+Il progetto, durante il suo sviluppo, è stato versionato e caricato su una repository, presente in AWS.

@@ -2,7 +2,29 @@
 \label{cap:conclusioni}
 
 \section{Raggiungimento degli obiettivi}
-
+\subsection{Problemi noti}
+In questa sezione si elencano i problemi riscontrati con il prodotto, indicando se tale problematica è stata risolta con successo oppure arginata in maniera temporanea.
+\subsubsection{Caricamento non sempre "veritiero"}
+Le classi \textit{GameControllerInterfaceComponent} e \\ \textit{GameTouchDigitalizerInterfaceComponent} utilizzano un componente per la gestione del tempo, chiamato \textit{TimerComponent}, tramite Dependency Injection (e dunque utilizzando un Service, chiamato \textit{TimerService}).\\
+Tale componente permette solo di sapere se è stato inizializzato o meno, e se viene effettuato un click l'elemento observable che fornisce risulta inizializzato.\\
+Per questa problematica non è stata posta una soluzione, ma una possibile può riguardare lo spostamento della logica relativa al tempo nella parte in Electron, come già accade per il timeout di inattività.
+\subsubsection{Controller rimane bloccato con due click contemporaneamente}
+In \textit{GameControllerInterfaceComponent} viene impiegato l'utilizzo di un controller, fornito dalla classe \textit{ControllerComponent} tramite composizione. Su tale controller, se si effettua un click su due pulsanti contemporaneamente, la parte in Electron non riconosce un eventuale sollevamento del dito, simulando quindi un evento di keydown prolungato senza simulare un evento di keyup. Tale problematica, attualmente non completamente risolta, può dipendere dagli eventi di click() presenti nella parte di Angular, che non fanno riconoscere un eventuale sollevamento del dito.
+\newpage
+\subsection{Possibili miglioramenti}
+\subsubsection{Interazione tramite il digitalizer}
+Allo stato attuale, l'applicazione utilizza il digitalizer solo durante l'utilizzo dei giochi che ne implementano l'uso.\\ Ne segue che, per esempio, non si può utilizzare il digitalizer nel menù principale.\\
+Un miglioramento possibile potrebbe riguardare proprio questo, ovvero l'implementazione di gestures da parte del digitalizer, in modo da utilizzarlo anche in altre aree dell'applicazione.\\
+Per tale miglioramento, si deve anche prevedere il blocco del digitalizer durante l'esecuzione di giochi che utilizzano il controller, in quanto non necessario.
+\subsubsection{Miglior struttura del file records.json}
+Il file \textit{records.json} salva ogni singolo record con una determinata struttura, senza raggrupparli per gioco e senza essere già ordinati. Un possibile miglioramento sarebbe rivedere la struttura del file, raggruppando i file per gioco oppure salvandoli già in ordine decrescente (dal punteggio più alto).
+\subsubsection{Miglior algoritmo di ordinamento}
+Attualmente, i record presenti nel file \textit{records.json} non sono salvati in ordine, dunque vengono ordinati "al momento", ovvero quando ne viene richiesta la visualizzazione. Attualmente l'algoritmo che ordina questi record è un'implementazione del Bubble Sort, con tempo medio di $\theta(N^2)$.\\ Ciò può risultare costoso con grandi mole di record, evento molto probabile per questa appicazione.\\
+Dunque, sarebbe ottimale ridurre il tempo di esecuzione il più possibile al $\theta(N)$, ancora meglio se si riesce ad arrivare ad $\theta(\log(N))$.
+\subsubsection{Multipli controller}
+Attualmente, i giochi con il controller utilizzano lo stesso controller, che "manca" di alcuni tasti se non utilizzati. Sarebbe interessante utilizzare un controller diverso per ogni gioco, magari con caratteristiche completamente diverse. Per esempio, implementare anche un controller simil NES e un controller simil Atari.
+\subsubsection{Code Refactor}
+Sarebbe opportuno effettuare un refactor per l'individuazione di codice non necessario ai fini dell'applicazione, permettendo un alleggerimento dei sorgenti.
 \section{Conoscenze acquisite}
 
 \section{Valutazione personale}
