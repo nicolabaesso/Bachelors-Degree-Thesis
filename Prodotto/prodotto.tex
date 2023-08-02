@@ -14,6 +14,7 @@ Su sistemi operativi con kernel Linux, l'applicativo veniva eseguito ma non rico
 \newpage
 \subsection{Panoramica del prodotto}
 Per concludere questa sezione, voglio mostrare il frutto della fase di codifica, partendo dalla schermata iniziale e concludendo con la gestione dell'inattività.\\
+\subsubsection{Parti prodotte}
 La schermata iniziale dell'applicazione comprende:
 \begin{itemize}
     \item Il nome dell'applicazione stessa.
@@ -96,9 +97,8 @@ Mentre, se il gioco prevede l'utilizzo del touch o del digitalizer, ciò che vie
     \label{fig:schermataGiocoTouchDigit}
 \end{figure}
 \newpage
-\subsubsection{Pagina di pausa}
-Premendo sul pulsante di pausa, si arriva alla schermata apposita.\\
-La schermata di pausa, oltre ad informare l'utente dello stato di pausa dell'applicazione, permette di ritornare al gioco attualmente in esecuzione oppure di uscire dal gioco, tornando al menù principale.
+In ogni gioco, a prescindere dal tipo, premendo sul pulsante di pausa si va all'apposita schermata di pausa.\\
+La schermata di pausa informa l'utente dello stato di pausa del gioco, e ne permette la ripresa oppure l'uscita dallo stesso.
 \begin{figure}[h]
     \centering
     \includegraphics[width=250pt]{images/product/schermataPausaGioco.png}
@@ -108,31 +108,30 @@ La schermata di pausa, oltre ad informare l'utente dello stato di pausa dell'app
 \subsubsection{Inattività nei giochi o nella schermata di pausa}
 Per quanto accade durante un'eventuale inattività, si rimanda alla sezione di \hyperref[sec:inactivity]{Gestione dell'inattività}
 \newpage
-\subsection{Realizzazione di un nuovo record}
-Se l'utente, durante la sua sessione di gioco (ovvero da quando ha avviato il gioco fino a quando lo ha chiuso) ha effettuato un nuovo record, viene mostrata la schermata di notifica di un nuovo record.
-\subsubsection{Pagina di notifica di un nuovo record}
-Questa schermata notifica l'utente del compimento di un nuovo record. Il nuovo record è legato al gioco appena concluso.\\
-Inoltre, viene chiesto all'utente se desidera salvare il record appena effettuato o se non desidera salvarlo, fornendo i pulsanti per la selezione.
+Ovviamente una parte importante dell'applicazione è il salvataggio dei record effettuati nei giochi. Per far questo, si passa attraverso due schermate.\\
+La prima informa semplicemente l'utente che ha effettuato un nuovo record nel gioco appena concluso. Olte a questo, permette allo stesso di decidere se salvarlo o meno.\\
 \begin{figure}[h]
     \centering
     \includegraphics[width=250pt]{images/product/schermataNuovoRecord.png}
     \caption{Schermata di avviso per un nuovo record}
     \label{fig:schermataNuovoRecord}
 \end{figure}
-\subsubsection{Pagina di inserimento nome-stile arcade}
-Nel caso l'utente decidesse di salvare il record, ne viene richiesto l'inserimento del nome attraverso questa schermata.\\
-Il nome viene inserito come nei vecchi cabinati arcade, ovvero selezionando tre caratteri da una lista di caratteri. Per la selezione, vengono utilizzati gli appositi pulsanti, situati sopra e sotto ogni singola lettera.\\
-Alla conferma, il nome viene messo sul record e salvato, e sarà dunque visibile nell'apposita schermata.
+Nel caso non si voglia salvare il record, l'applicativo semplicemente ritorna nel menù principale, perdendo il punteggio da salvare.\\
+Se invece l'utente vuole salvare il record, viene portato alla seconda schermata, dedicata all'inserimento del nome.\\
+Il nome viene inserito attraverso dei pulsanti, che permettono di selezionare, una per volta, le tre lettere che compongono il nome a cui associare il record.
 \begin{figure}[h]
     \centering
     \includegraphics[width=250pt]{images/product/schermataInserimentoNome.png}
     \caption{Schermata per l'inserimento del nome}
     \label{fig:schermataInserimentoNome}
 \end{figure}
-\subsubsubsection{Inattività nell'inserimento di un nuovo nome}
-Per quanto accade durante un'eventuale inattività, si rimanda alla sezione di \hyperref[sec:inactivity]{Gestione dell'inattività}
-\newpage
-\subsection{Gestione dell'inattività}
+Ho scelto lo stile dei giochi arcade per un principio specifico, ovvero l'inserimento di input senza dover ricorrere a periferiche esterne a quelle presenti. Infatti, grazie a questa modalità, si può utilizzare lo schermo del device senza incorre in tastiere virtuali o fisiche.
+\subsection{Gestione degli errori}
+A livello di comportamento, ENGaming prevede pochi casi di errore, essendo un sistema che non prevede configurazioni da parte dell'utente.\\
+Voglio comunque elencare delle piccole accortezze che ho implementato, in quanto si sono rivelate utili anche alla prevenzione di altri errori.
+\subsubsection{Gestione del non collegamento del device}
+ENGaming, durante l'avvio, cerca di individuare un ENSign11, in modo da collocarci l'applicazione al suo interno.
+\subsubsection{Gestione dell'inattività}
 \label{sec:inactivity}
 L'applicazione, se non rileva alcun input per 10 secondi, fa partire un timer di inattività della durata massima di 4 minuti. Tale timer si azzera se durante questo lasso di tempo riceve un input.\\
 Nel caso scada il tempo, il sistema chiude l'attività in esecuzione (gioco o salvataggio del record) e ritorna alla schermata principale.\\
