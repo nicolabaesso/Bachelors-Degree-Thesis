@@ -96,7 +96,7 @@ Mentre, se il gioco prevede l'utilizzo del touch o del digitalizer, ciò che vie
     \caption{Esempio di schermata per un gioco con il touch/digitalizer}
     \label{fig:schermataGiocoTouchDigit}
 \end{figure}
-\newpage
+\\
 In ogni gioco, a prescindere dal tipo, premendo sul pulsante di pausa si va all'apposita schermata di pausa.\\
 La schermata di pausa informa l'utente dello stato di pausa del gioco, e ne permette la ripresa oppure l'uscita dallo stesso.
 \begin{figure}[h]
@@ -105,8 +105,6 @@ La schermata di pausa informa l'utente dello stato di pausa del gioco, e ne perm
     \caption{Schermata di pausa}
     \label{fig:schermataPausaGioco}
 \end{figure}
-\subsubsection{Inattività nei giochi o nella schermata di pausa}
-Per quanto accade durante un'eventuale inattività, si rimanda alla sezione di \hyperref[sec:inactivity]{Gestione dell'inattività}
 \newpage
 Ovviamente una parte importante dell'applicazione è il salvataggio dei record effettuati nei giochi. Per far questo, si passa attraverso due schermate.\\
 La prima informa semplicemente l'utente che ha effettuato un nuovo record nel gioco appena concluso. Olte a questo, permette allo stesso di decidere se salvarlo o meno.\\
@@ -116,7 +114,7 @@ La prima informa semplicemente l'utente che ha effettuato un nuovo record nel gi
     \caption{Schermata di avviso per un nuovo record}
     \label{fig:schermataNuovoRecord}
 \end{figure}
-Nel caso non si voglia salvare il record, l'applicativo semplicemente ritorna nel menù principale, perdendo il punteggio da salvare.\\
+\\Nel caso non si voglia salvare il record, l'applicativo semplicemente ritorna nel menù principale, perdendo il punteggio da salvare.\\
 Se invece l'utente vuole salvare il record, viene portato alla seconda schermata, dedicata all'inserimento del nome.\\
 Il nome viene inserito attraverso dei pulsanti, che permettono di selezionare, una per volta, le tre lettere che compongono il nome a cui associare il record.
 \begin{figure}[h]
@@ -125,14 +123,14 @@ Il nome viene inserito attraverso dei pulsanti, che permettono di selezionare, u
     \caption{Schermata per l'inserimento del nome}
     \label{fig:schermataInserimentoNome}
 \end{figure}
-Ho scelto lo stile dei giochi arcade per un principio specifico, ovvero l'inserimento di input senza dover ricorrere a periferiche esterne a quelle presenti. Infatti, grazie a questa modalità, si può utilizzare lo schermo del device senza incorre in tastiere virtuali o fisiche.
+\\Ho scelto lo stile dei giochi arcade per un principio specifico, ovvero l'inserimento di input senza dover ricorrere a periferiche esterne a quelle presenti. Infatti, grazie a questa modalità, si può utilizzare lo schermo del device senza incorre in tastiere virtuali o fisiche.
 \subsection{Gestione degli errori}
 A livello di comportamento, ENGaming prevede pochi casi di errore, essendo un sistema che non prevede configurazioni da parte dell'utente.\\
 Voglio comunque elencare delle piccole accortezze che ho implementato, in quanto si sono rivelate utili anche alla prevenzione di altri errori.
 \subsubsection{Gestione del non collegamento del device}
-ENGaming, durante l'avvio, cerca di individuare un ENSign11, in modo da collocarci l'applicazione al suo interno.
+ENGaming, durante l'avvio, cerca di individuare un ENSign11, in modo da collocarci l'applicazione al suo interno. Nel caso l'utente non colleghi un device prima dell'avvio, l'applicazione riporta un errore all'utente, terminando l'esecuzione del programma.
 \subsubsection{Gestione dell'inattività}
 \label{sec:inactivity}
 L'applicazione, se non rileva alcun input per 10 secondi, fa partire un timer di inattività della durata massima di 4 minuti. Tale timer si azzera se durante questo lasso di tempo riceve un input.\\
 Nel caso scada il tempo, il sistema chiude l'attività in esecuzione (gioco o salvataggio del record) e ritorna alla schermata principale.\\
-Tale azione comporta la perdita di un eventuale record effettuato, in quanto l'attività precedentemente in esecuzione viene chiusa forzatamente.
+Tale azione comporta la perdita di un eventuale record effettuato e non ancora salvato, in quanto l'attività precedentemente in esecuzione viene chiusa forzatamente.
