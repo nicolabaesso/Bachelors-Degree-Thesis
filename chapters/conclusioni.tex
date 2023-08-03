@@ -1,30 +1,105 @@
 \chapter{Conclusioni}
 \label{cap:conclusioni}
 
-\section{Raggiungimento degli obiettivi}
-\subsection{Problemi noti}
-In questa sezione si elencano i problemi riscontrati con il prodotto, indicando se tale problematica è stata risolta con successo oppure arginata in maniera temporanea.
-\subsubsection{Caricamento non sempre "veritiero"}
-Le classi \textit{GameControllerInterfaceComponent} e \\ \textit{GameTouchDigitalizerInterfaceComponent} utilizzano un componente per la gestione del tempo, chiamato \textit{TimerComponent}, tramite Dependency Injection (e dunque utilizzando un Service, chiamato \textit{TimerService}).\\
-Tale componente permette solo di sapere se è stato inizializzato o meno, e se viene effettuato un click l'elemento observable che fornisce risulta inizializzato.\\
-Per questa problematica non è stata posta una soluzione, ma una possibile può riguardare lo spostamento della logica relativa al tempo nella parte in Electron, come già accade per il timeout di inattività.
-\subsubsection{Controller rimane bloccato con due click contemporaneamente}
-In \textit{GameControllerInterfaceComponent} viene impiegato l'utilizzo di un controller, fornito dalla classe \textit{ControllerComponent} tramite composizione. Su tale controller, se si effettua un click su due pulsanti contemporaneamente, la parte in Electron non riconosce un eventuale sollevamento del dito, simulando quindi un evento di keydown prolungato senza simulare un evento di keyup. Tale problematica, attualmente non completamente risolta, può dipendere dagli eventi di click() presenti nella parte di Angular, che non fanno riconoscere un eventuale sollevamento del dito.
-\newpage
-\subsection{Possibili miglioramenti}
-\subsubsection{Interazione tramite il digitalizer}
-Allo stato attuale, l'applicazione utilizza il digitalizer solo durante l'utilizzo dei giochi che ne implementano l'uso.\\ Ne segue che, per esempio, non si può utilizzare il digitalizer nel menù principale.\\
-Un miglioramento possibile potrebbe riguardare proprio questo, ovvero l'implementazione di gestures da parte del digitalizer, in modo da utilizzarlo anche in altre aree dell'applicazione.\\
-Per tale miglioramento, si deve anche prevedere il blocco del digitalizer durante l'esecuzione di giochi che utilizzano il controller, in quanto non necessario.
-\subsubsection{Miglior struttura del file records.json}
-Il file \textit{records.json} salva ogni singolo record con una determinata struttura, senza raggrupparli per gioco e senza essere già ordinati. Un possibile miglioramento sarebbe rivedere la struttura del file, raggruppando i file per gioco oppure salvandoli già in ordine decrescente (dal punteggio più alto).
-\subsubsection{Miglior algoritmo di ordinamento}
-Attualmente, i record presenti nel file \textit{records.json} non sono salvati in ordine, dunque vengono ordinati "al momento", ovvero quando ne viene richiesta la visualizzazione. Attualmente l'algoritmo che ordina questi record è un'implementazione del Bubble Sort, con tempo medio di $\theta(N^2)$.\\ Ciò può risultare costoso con grandi mole di record, evento molto probabile per questa appicazione.\\
-Dunque, sarebbe ottimale ridurre il tempo di esecuzione il più possibile al $\theta(N)$, ancora meglio se si riesce ad arrivare ad $\theta(\log(N))$.
-\subsubsection{Multipli controller}
-Attualmente, i giochi con il controller utilizzano lo stesso controller, che "manca" di alcuni tasti se non utilizzati. Sarebbe interessante utilizzare un controller diverso per ogni gioco, magari con caratteristiche completamente diverse. Per esempio, implementare anche un controller simil NES e un controller simil Atari.
-\subsubsection{Code Refactor}
-Sarebbe opportuno effettuare un refactor per l'individuazione di codice non necessario ai fini dell'applicazione, permettendo un alleggerimento dei sorgenti.
+\section{Raggiungimento degli obiettivi e analisi del prodotto}
+Con questo tirocinio, ho soddisfatto il 95\% dei requisiti totali, soddisfando al 100\% i requisiti obbligatori, come riportato in tabella.
+\begin{longtable}{|c|c|}
+    \hline
+    \thead{Codice}&\thead{Stato}\\
+    \hline
+    RF01&Soddisfatto\\
+    \hline
+    RF02&Soddisfatto\\
+    \hline
+    RF03&Soddisfatto\\
+    \hline
+    RF04&Soddisfatto\\
+    \hline
+    RF05&Soddisfatto\\
+    \hline
+    RF06&Soddisfatto\\
+    \hline
+    RF07&Soddisfatto\\
+    \hline
+    RF08&Soddisfatto\\
+    \hline
+    RF09&Soddisfatto\\
+    \hline
+    RF10&Soddisfatto\\
+    \hline
+    RF11&Soddisfatto\\
+    \hline
+    RF12&Soddisfatto\\
+    \hline
+    RF13&Soddisfatto\\
+    \hline
+    RF14&Soddisfatto\\
+    \hline
+    RF15&Soddisfatto\\
+    \hline
+    RF16&Soddisfatto\\
+    \hline
+    RF17&Soddisfatto\\
+    \hline
+    RF18&Soddisfatto\\
+    \hline
+    RF19&Soddisfatto\\
+    \hline
+    RF20&Soddisfatto\\
+    \hline
+    RF21&Soddisfatto\\
+    \hline
+    RF22&Soddisfatto\\
+    \hline
+    RF23&Soddisfatto\\
+    \hline
+    RF24&Soddisfatto\\
+    \hline
+    RF25&Soddisfatto\\
+    \hline
+    RF26&Soddisfatto\\
+    \hline
+    RF27&Soddisfatto\\
+    \hline
+    RF28&Soddisfatto\\
+    \hline
+    RF29&Soddisfatto\\
+    \hline
+    RF30&Soddisfatto\\
+    \hline
+    RF31&Soddisfatto\\
+    \hline
+    RF32&Soddisfatto\\
+    \hline
+    RF33&Soddisfatto\\
+    \hline
+    RF34&Non Soddisfatto\\
+    \hline
+    RF35&Non Soddisfatto\\
+    \hline
+    RF36&Soddisfatto
+    \hline
+    \caption{Tabella di soddisfacimento dei requisiti}
+\end{longtable}
+Non ho potuto soddisfare i requisiti opzionali (R34 e R35) poiché il tempo necessario per il loro completamento era superiore al tempo rimastomi.\\
+Quanto sviluppato corrisponde dunque ai requisiti analizzati e al comportamento aspettato.\\
+In particolare, come anche già visto in \nameref{subsec:partiprodotte}, ENGaming permette di:
+\begin{itemize}
+    \item visualizzare le informazioni relativa ad un gioco.
+    \item avviare il gioco ed interagirci attraverso l'interfaccia presente.
+    \item mettere in pausa, riprendere ed uscire dal gioco.
+    \item salvare i record effettuati.
+    \item visualizzare i record effettuati.
+\end{itemize}
 \section{Conoscenze acquisite}
-
+In primis, ho imparato molto sulla creazione di elementi web tramite Angular. Venendo da una conoscenza "base", ovvero da solo HTML, CSS e JS senza l'uso di framework, ho trovato interessanti i contenuti che Angular stesso propone.\\
+Ho sicuramente apprezzato l'utilizzo di Typescript, che con la tipizzazione è stato concettualmente semplice da lavorarci, avendo un background con linguaggi tipizzati (come Java e C++).\\
+Inoltre, l'utilizzo delle Node-API per poter eseguire codice C++ in ambito web è stato molto interessante, sopratutto a livello comunicativo, venedo utilizzate tecnologie ideate per ambiti diversi.
 \section{Valutazione personale}
+Questo tirocinio ha sicuramente aiutato la mia crescita sia professionale che personale.\\
+Gli strumenti che ho utilizzato si sono rivelati adeguati allo scopo, e ciò ha reso nettamente più facile l'intero processo di sviluppo.\\
+Le fasi, che inizialmente vedevo come limitate temporalmente, si sono dimostrate adatte e mi hanno permesso di non avere ritardi e completare quanto poi definito.\\
+Effettuare analisi e progettazione mi hanno permesso di non avere intoppi durante lo sviluppo. Inoltre, mi hanno aiutato a migliorare rispetto a quanto visto durante il percorso accademico.\\
+Le tecnologie utilizzate sono state per me molto interessanti, a prescindere dalla conoscenza pregressa che avevo.\\
+L'ambiente di lavoro è stato positivo e stimolante, e ha sicuramente aiutato nella realizzazione di questo progetto.\\
+Nel complesso, sono soddisfatto di come è andato il tirocinio, delle conoscenze apprese e del risultato ottenuto. 
