@@ -79,7 +79,8 @@ Tale strumento permette di compilare l'applicazione per Windows, Linux e MacOS, 
     \label{fig:HTMLCSSJS}
 \end{figure}
 I giochi che ENGaming esegue sono semplici giochi eseguibili anche su browser. Per tale motivo, sono scritti con HTML per la struttura (generalmente composta da canvas), CSS per lo stile e Javascript per il gioco vero e proprio.\\
-Per avere tutte le funzionalità che l'applicativo offre, è necessario che i giochi implementino una piccola modifica (spiegata più avanti).
+Per avere tutte le funzionalità che l'applicativo offre, è necessario che i giochi implementino una piccola modifica, che consiste nell'inviare un messaggio alla pagina principale.\\
+(inserire tramaccio messaggio)
 
 \subsubsection{WebAssembly}
 \begin{figure}[h]
@@ -88,7 +89,9 @@ Per avere tutte le funzionalità che l'applicativo offre, è necessario che i gi
     \caption{Logo di WebAssembly}
     \label{fig:webassembly}
 \end{figure}
-Nel caso si volesse eseguire un classico nell'ENGaming (ad esempio, Doom), bisogna prima passare per \gls{webassembly}, in modo da renderlo eseguibile su un browser.
+Nel caso si volesse eseguire un classico nell'ENGaming (ad esempio, Doom), bisogna prima passare per \gls{webassembly}, in modo da renderlo eseguibile su un browser.\\
+Le modifiche da fare per il funzionamento dipendono dal singolo gioco, è in ogni caso indispensabile essere in possesso dei sorgenti.\\
+Tale gioco viene poi letto da un normale file \emph{Javascript} attraverso il file con estensione .wasm, rendendo imposssibile effettuare la modifica per la ricezione del punteggio.
 
 \include{ProgettazioneTecnica/ENGaming_progettazione}
 \section{Codifica}

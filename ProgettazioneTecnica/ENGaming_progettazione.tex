@@ -319,3 +319,13 @@ Un esempio di record che il file contiene è il seguente:
         }
     ]
 \end{lstlisting}
+\subsection{Scelte progettuali}
+Oltre a quanto già visto, ho adoperato diverse scelte durante questa fase.\\
+In particolare:
+\begin{itemize}
+    \item architetturalmente, ho scelto di utilizzare il modello Model-View-ViewModel (abbreviato MVVM), in quanto tra le possibili architetture l'ho ritenuta la più adatta per il progetto.
+    \item l'utilizzo di \Gls{angl} mi consente di ridurre l'accoppiamento per componenti attraverso l'utilizzo della \emph{Dependency Injection} per l'utilizzo dei servizi.
+    \item l'utilizzo degli \Gls{ipcg} mi permettono di far comunicare gli elementi che compongono l'applicazione, in particolare tra le classi implementate in \Gls{angl} e \Gls{elctr}, attraverso lo scambio di messaggi in appositi canali.\\Tale comportamento è simile al comportamento di un \emph{Observer}.
+    \item per rendere minore la dipendenza tra le componenti, ho scelto di non utilizzare alcun tipo di gerarchia. Questa scelta è dovuta, oltre alla non reale necessità del suo utilizzo, alla limitatezza a livello applicativo, in quanto tra le tecnologie da usare solo \gls{cpp} permette l'uso di una gerarchia.
+    \item invece di ricorrere all'utilizzo delle gerarchie, ho scelto di definire le parti comuni attraverso un'interfaccia, che viene poi implementata dalle singole classi che la necessitano.
+\end{itemize}
