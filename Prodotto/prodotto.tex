@@ -1,11 +1,11 @@
 \newpage
 \subsection{Utilizzo dell'applicativo}
-Alla fine della fase di codifica, assistito dal tutor, ho creato gli eseguibili (installers oppure pacchetti, a seconda della piattaforma), attraverso Electron Forge.\\
+Alla fine della fase di codifica, assistito dal tutor, ho creato gli eseguibili (installers oppure pacchetti, a seconda della piattaforma), attraverso \Gls{elctrForge}.\\
 Allo stato da me raggiunto, ENGaming può essere utilizzato con:
 \begin{itemize}
     \item un PC con installato il driver \gls{displaylink} e uno dei seguenti sistemi operativi: \begin{itemize}
-    \item Windows 11 (non necessario installare il driver citato in precedenza, in quanto già presente).
-    \item MacOS Ventura.
+    \item Windows 11\footcite{site:w11} (non necessario installare il driver citato in precedenza, in quanto già presente).
+    \item MacOS Ventura\footcite{site:macosVentura}.
     \end{itemize}
     \item un ENSign11 da collegare a suddetto PC.
 \end{itemize}
@@ -13,9 +13,9 @@ Purtroppo non ho potuto testare l'applicativo in altre versioni di Windows o Mac
 Su sistemi operativi con kernel Linux, l'applicativo veniva eseguito ma non riconosceva il tablet, costringendo un utilizzo tramite tastiera e mouse e in generale con errori dovuti proprio al non riconoscimento del device.
 \newpage
 \subsection{Panoramica del prodotto}
+\label{subsec:panoramicaProdotto}
 Per concludere questa sezione, voglio mostrare il frutto della fase di codifica, partendo dalla schermata iniziale e concludendo con la gestione dell'inattività.\\
-\subsubsection{Parti prodotte}
-\label{subsec:partiprodotte}
+\subsubsection{Schermata iniziale}
 La schermata iniziale dell'applicazione comprende:
 \begin{itemize}
     \item Il nome dell'applicazione stessa.
@@ -31,6 +31,7 @@ La schermata iniziale dell'applicazione comprende:
 \end{figure}
 Ho scelto una visualizzazione il più possibile vicina alle icone per portare un senso di famigliarità, in quanto ENGaming viene usato attraverso uno schermo touch.
 \newpage
+\subsubsection{Visualizzazione record}
 Atraverso l'icona "High Score", è possibile passare alla visualizzazione dei record.\\
 La pagina apposita mostra la lista dei record globale, ovvero mostra tutti i record effettuati senza distinzione di gioco.\\
 In particolare, ogni record mostra:
@@ -56,6 +57,7 @@ La prima e l'ultima lista di questo genere, alla pressione degli appositi pulsan
     \label{fig:schermataRecordSingoloGioco}
 \end{figure}
 \newpage
+\subsubsection{Pagina di gioco}
 Ritornando alla schermata iniziale, si può selezionare un gioco attraverso la propria icona.\\
 Tale operazione porta alla pagina del gioco stesso, che contiene le informazioni sul gioco stesso, ovvero:
 \begin{itemize}
@@ -71,7 +73,8 @@ Tale operazione porta alla pagina del gioco stesso, che contiene le informazioni
     \caption{Esempio di pagina di un gioco}
     \label{fig:schermataPaginaGioco}
 \end{figure}
-Ovviamente, da questa pagina si può decidere se avviare il gioco o tornare alla schermata principale.\\\\
+Ovviamente, da questa pagina si può decidere se avviare il gioco o tornare alla schermata principale.
+\subsubsection{Schermata di caricamento}
 All'avvio del gioco, si passa attraverso una pagina di caricamento. La pagina in questione è spoglia, in quanto informa semplicemente l'utente dello stato di caricamento.\\
 Questa pagina viene visualizzata per 4 secondi, per poi passare all'interfaccia di gioco.
 \begin{figure}[h]
@@ -80,7 +83,8 @@ Questa pagina viene visualizzata per 4 secondi, per poi passare all'interfaccia 
     \caption{Schermata di caricamento}
     \label{fig:schermataCaricamento}
 \end{figure}
-\newpage
+
+\subsubsection{Schermate di gioco}
 La differenza tra le due tipologie di gioco entra adesso.\\
 Infatti, se il gioco prevede l'utilizzo del controller, oltre al gioco stesso si visualizza anche il controller, che dalla struttura di default (spiegata in \nameref{paragraph:gamecontrollerinterfacecomponent}), viene configurato attraverso gli input che il gioco richiede.
 \begin{figure}[h]
@@ -97,7 +101,7 @@ Mentre, se il gioco prevede l'utilizzo del touch o del digitalizer, ciò che vie
     \caption{Esempio di schermata per un gioco con il touch/digitalizer}
     \label{fig:schermataGiocoTouchDigit}
 \end{figure}
-\\
+\subsubsection{Schermata di pausa}
 In ogni gioco, a prescindere dal tipo, premendo sul pulsante di pausa si va all'apposita schermata di pausa.\\
 La schermata di pausa informa l'utente dello stato di pausa del gioco, e ne permette la ripresa oppure l'uscita dallo stesso.
 \begin{figure}[h]
@@ -107,6 +111,7 @@ La schermata di pausa informa l'utente dello stato di pausa del gioco, e ne perm
     \label{fig:schermataPausaGioco}
 \end{figure}
 \newpage
+\subsubsection{Salvataggio record}
 Ovviamente una parte importante dell'applicazione è il salvataggio dei record effettuati nei giochi. Per far questo, si passa attraverso due schermate.\\
 La prima informa semplicemente l'utente che ha effettuato un nuovo record nel gioco appena concluso. Olte a questo, permette allo stesso di decidere se salvarlo o meno.\\
 \begin{figure}[h]

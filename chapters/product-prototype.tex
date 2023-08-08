@@ -78,10 +78,14 @@ Tale strumento permette di compilare l'applicazione per Windows, Linux e MacOS, 
     \caption{Loghi di HTML, CSS e Javascript}
     \label{fig:HTMLCSSJS}
 \end{figure}
-I giochi che ENGaming esegue sono semplici giochi eseguibili anche su browser. Per tale motivo, sono scritti con HTML per la struttura (generalmente composta da canvas), CSS per lo stile e Javascript per il gioco vero e proprio.\\
+I giochi che ENGaming esegue sono semplici giochi eseguibili anche su browser. Per tale motivo, sono scritti con \gls{html} per la struttura (generalmente composta da canvas), \gls{css} per lo stile e \gls{js} per il gioco vero e proprio.\\
 Per avere tutte le funzionalità che l'applicativo offre, è necessario che i giochi implementino una piccola modifica, che consiste nell'inviare un messaggio alla pagina principale.\\
-(inserire tramaccio messaggio)
-
+Infatti, essendo il gioco visualizzato all'interno di una pagina, è necessario che il gioco mandi il punteggio "in alto", utilizzando la seguente riga di codice:
+\begin{lstlisting}
+    window.top.postMessage({type:'gameIsOver',data:score});
+\end{lstlisting}
+Questo comando manda un messaggio, di tipo \emph{gameIsOver}, con il punteggio conseguito.
+\newpage
 \subsubsection{WebAssembly}
 \begin{figure}[h]
     \centering
@@ -91,7 +95,7 @@ Per avere tutte le funzionalità che l'applicativo offre, è necessario che i gi
 \end{figure}
 Nel caso si volesse eseguire un classico nell'ENGaming (ad esempio, Doom), bisogna prima passare per \gls{webassembly}, in modo da renderlo eseguibile su un browser.\\
 Le modifiche da fare per il funzionamento dipendono dal singolo gioco, è in ogni caso indispensabile essere in possesso dei sorgenti.\\
-Tale gioco viene poi letto da un normale file \emph{Javascript} attraverso il file con estensione .wasm, rendendo imposssibile effettuare la modifica per la ricezione del punteggio.
+Tale gioco viene poi letto da un normale file \emph{Javascript} attraverso il file con estensione .wasm, che non permette di effettuare la modifica per la ricezione del punteggio, quindi per tali giochi non si possono avere record salvati.
 
 \include{ProgettazioneTecnica/ENGaming_progettazione}
 \section{Codifica}
