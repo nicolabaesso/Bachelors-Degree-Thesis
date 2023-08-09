@@ -28,7 +28,7 @@ Inoltre, si occupa della comunicazione tra il back-end e il front-end dell'appli
     \label{fig:angular}
 \end{figure}
 \gls{angl} è il framework scelto per la realizzazione della parte visiva dell'applicazione.\\
-\emph{Angular} permette la creazione di Componenti, ovvero di elementi o pagine, dove sono presenti:
+Angular permette la creazione di Componenti, ovvero di elementi o pagine, dove sono presenti:
 \begin{itemize}
     \item un file HTML, per la visualizzazione del componente.
     \item un foglio di stile (CSS/SASS/LESS) per gli effetti grafici.
@@ -84,7 +84,7 @@ Infatti, essendo il gioco visualizzato all'interno di una pagina, è necessario 
 \begin{lstlisting}
     window.top.postMessage({type:'gameIsOver',data:score});
 \end{lstlisting}
-Questo comando manda un messaggio, di tipo \emph{gameIsOver}, con il punteggio conseguito.
+Questo comando manda un messaggio con il punteggio conseguito. Il tipo (in questo caso, "gameIsOver") indica la tipologia del messaggio, in modo da poterlo distinguere rispetto ad altri messaggi.
 \newpage
 \subsubsection{WebAssembly}
 \begin{figure}[h]
@@ -95,7 +95,7 @@ Questo comando manda un messaggio, di tipo \emph{gameIsOver}, con il punteggio c
 \end{figure}
 Nel caso si volesse eseguire un classico nell'ENGaming (ad esempio, Doom), bisogna prima passare per \gls{webassembly}, in modo da renderlo eseguibile su un browser.\\
 Le modifiche da fare per il funzionamento dipendono dal singolo gioco, è in ogni caso indispensabile essere in possesso dei sorgenti.\\
-Tale gioco viene poi letto da un normale file \emph{Javascript} attraverso il file con estensione .wasm, che non permette di effettuare la modifica per la ricezione del punteggio, quindi per tali giochi non si possono avere record salvati.
+Tale gioco viene poi letto da un normale file Javascript attraverso il file con estensione .wasm, che non permette di effettuare la modifica per la ricezione del punteggio, quindi per tali giochi non si possono avere record salvati.
 
 \include{ProgettazioneTecnica/ENGaming_progettazione}
 \section{Codifica}
