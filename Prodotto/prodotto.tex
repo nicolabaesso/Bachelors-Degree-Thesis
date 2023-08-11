@@ -19,7 +19,7 @@ Per concludere questa sezione, voglio mostrare il frutto della fase di codifica,
 La schermata iniziale dell'applicazione comprende:
 \begin{itemize}
     \item Il nome dell'applicazione stessa.
-    \item L'elenco dei giochi disponibili, sotto forma di icone.
+    \item L'elenco dei giochi disponibili, sotto forma d'icone.
     \item Un'icona per visualizzare i record effettuati.
     \item Un'icona per uscire dall'applicazione.
 \end{itemize}
@@ -32,7 +32,7 @@ La schermata iniziale dell'applicazione comprende:
 Ho scelto una visualizzazione il più possibile vicina alle icone per portare un senso di famigliarità, in quanto ENGaming viene usato attraverso uno schermo touch.
 \newpage
 \subsubsection{Visualizzazione record}
-Atraverso l'icona "High Score", è possibile passare alla visualizzazione dei record.\\
+Attraverso l'icona "High Score", è possibile passare alla visualizzazione dei record.\\
 La pagina apposita mostra la lista dei record globale, ovvero mostra tutti i record effettuati senza distinzione di gioco.\\
 In particolare, ogni record mostra:
 \begin{itemize}
@@ -43,7 +43,7 @@ In particolare, ogni record mostra:
 \end{itemize}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=250pt]{images/product/schermataRecord.png}
+    \includegraphics[width=225pt]{images/product/schermataRecord.png}
     \caption{Lista dei record globali}
     \label{fig:schermataRecord}
 \end{figure}
@@ -52,7 +52,7 @@ Tali liste sono tante quanti i giochi in cui sia stato fatto almeno un record.
 La prima e l'ultima lista di questo genere, alla pressione degli appositi pulsante, riportano alla lista globale.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=250pt]{images/product/schermataRecordSingoloGioco.png}
+    \includegraphics[width=225pt]{images/product/schermataRecordSingoloGioco.png}
     \caption{Esempio di lista per un singolo gioco}
     \label{fig:schermataRecordSingoloGioco}
 \end{figure}
@@ -63,7 +63,7 @@ Tale operazione porta alla pagina del gioco stesso, che contiene le informazioni
 \begin{itemize}
     \item il nome del gioco.
     \item il genere del gioco.
-    \item il tipo di input, ovvero se viene utilizzato il controller o il touch/digitalizer.
+    \item il tipo d'input, ovvero se viene utilizzato il controller o il touch/digitalizer.
     \item la descrizione del gioco.
     \item L'elenco degli input, o delle gesture, che il gioco ha.
 \end{itemize}
@@ -74,9 +74,10 @@ Tale operazione porta alla pagina del gioco stesso, che contiene le informazioni
     \label{fig:schermataPaginaGioco}
 \end{figure}
 Ovviamente, da questa pagina si può decidere se avviare il gioco o tornare alla schermata principale.
+\newpage
 \subsubsection{Schermata di caricamento}
 All'avvio del gioco, si passa attraverso una pagina di caricamento. La pagina in questione è spoglia, in quanto informa semplicemente l'utente dello stato di caricamento.\\
-Questa pagina viene visualizzata per 4 secondi, per poi passare all'interfaccia di gioco.
+Questa pagina viene visualizzata per quattro secondi, per poi passare all'interfaccia di gioco.
 \begin{figure}[h]
     \centering
     \includegraphics[width=250pt]{images/product/schermataCaricamento.png}
@@ -113,7 +114,7 @@ La schermata di pausa informa l'utente dello stato di pausa del gioco, e ne perm
 \newpage
 \subsubsection{Salvataggio record}
 Ovviamente una parte importante dell'applicazione è il salvataggio dei record effettuati nei giochi. Per far questo, si passa attraverso due schermate.\\
-La prima informa semplicemente l'utente che ha effettuato un nuovo record nel gioco appena concluso. Olte a questo, permette allo stesso di decidere se salvarlo o meno.\\
+La prima informa semplicemente l'utente che ha effettuato un nuovo record nel gioco appena concluso. Oltre a questo, permette allo stesso di decidere se salvarlo o meno.\\
 \begin{figure}[h]
     \centering
     \includegraphics[width=250pt]{images/product/schermataNuovoRecord.png}
@@ -129,14 +130,14 @@ Il nome viene inserito attraverso dei pulsanti, che permettono di selezionare, u
     \caption{Schermata per l'inserimento del nome}
     \label{fig:schermataInserimentoNome}
 \end{figure}
-\\Ho scelto lo stile dei giochi arcade per un principio specifico, ovvero l'inserimento di input senza dover ricorrere a periferiche esterne a quelle presenti. Infatti, grazie a questa modalità, si può utilizzare lo schermo del device senza incorre in tastiere virtuali o fisiche.
+\\Ho scelto lo stile dei giochi arcade per un principio specifico, ovvero l'inserimento d'input senza dover ricorrere a periferiche esterne a quelle presenti. Infatti, grazie a questa modalità, si può utilizzare lo schermo del device senza incorre in tastiere virtuali o fisiche.
 \subsection{Gestione degli errori}
 A livello di comportamento, ENGaming prevede pochi casi di errore, essendo un sistema che non prevede configurazioni da parte dell'utente.\\
 Voglio comunque elencare delle piccole accortezze che ho implementato, in quanto si sono rivelate utili anche alla prevenzione di altri errori.
 \subsubsection{Gestione del non collegamento del device}
-ENGaming, durante l'avvio, cerca di individuare un ENSign11, in modo da collocarci l'applicazione al suo interno. Nel caso l'utente non colleghi un device prima dell'avvio, l'applicazione riporta un errore all'utente, terminando l'esecuzione del programma.
+ENGaming, durante l'avvio, cerca d'individuare un ENSign11, in modo da collocarci l'applicazione al suo interno. Nel caso l'utente non colleghi un device prima dell'avvio, l'applicazione riporta un errore all'utente, terminando l'esecuzione del programma.
 \subsubsection{Gestione dell'inattività}
 \label{sec:inactivity}
-L'applicazione, se non rileva alcun input per 10 secondi, fa partire un timer di inattività della durata massima di 4 minuti. Tale timer si azzera se durante questo lasso di tempo riceve un input.\\
+L'applicazione, se non rileva alcun input per dieci secondi, fa partire un timer d'inattività della durata massima di quattro minuti. Tale timer si azzera se durante questo lasso di tempo riceve un input.\\
 Nel caso scada il tempo, il sistema chiude l'attività in esecuzione (gioco o salvataggio del record) e ritorna alla schermata principale.\\
 Tale azione comporta la perdita di un eventuale record effettuato e non ancora salvato, in quanto l'attività precedentemente in esecuzione viene chiusa forzatamente.

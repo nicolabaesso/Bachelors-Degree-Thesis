@@ -8,7 +8,7 @@
     \label{fig:diagrammaCompleto}
 \end{figure}
 % immagine grafico completo
-Le classi utilizzate possono essere classificate tramite il linguaggio di implementazione:
+Le classi utilizzate possono essere classificate tramite il linguaggio d'implementazione:
 \begin{itemize}
     \item Electron: \begin{itemize}
         \item ENGaming
@@ -42,7 +42,7 @@ Di seguito si analizzano le vari componenti con maggior dettaglio.
     \label{fig:engaming}
 \end{figure}
 % immagine dettaglio ENGaming
-La classe ENGaming si occupa dell'avvio dell'applicazione.\\ Sviluppata in Electron, contiene i componenti necessari per la creazione della finestra nell'ENSign 11 (Screen, BrowserWindow) e per la comunicazione con la parte in Angular (IPCMain).\\
+La classe \emph{ENGaming} si occupa dell'avvio dell'applicazione.\\ Sviluppata in \gls{elctr}, contiene i componenti necessari per la creazione della finestra nell'ENSign 11 (Screen, BrowserWindow) e per la comunicazione con la parte in \gls{angl} (IPCMain).\\
 Inoltre, contiene anche i moduli per la comunicazione con ENSign11.\\
 Contiene:
 \begin{itemize}
@@ -58,7 +58,7 @@ Contiene:
         \item \emph{toggleDigitalizer}, per ricevere i pacchetti definiti nella struttura \emph{DigitalizerPacket}.
         \item \emph{stopDigitalizer}, per fermare le interazioni con il digitalizer.
         \item \emph{closeDevice}, per chiudere il device.
-        \item \emph{quitDevice}, per "liberare" il device e renderlo disponibile ad altri applicativi (o ad una nuova istanza di ENGaming).
+        \item \emph{quitDevice}, per "liberare" il device e renderlo disponibile ad altri applicativi (o a una nuova istanza di ENGaming).
     \end{itemize}
     \item i metodi per l'avvio dei giochi: \begin{itemize}
         \item \emph{startGame}: identifica la tipologia del gioco e lo inizializza.
@@ -96,15 +96,16 @@ All'avvio dell'applicazione, la schermata iniziale presenta tre elementi:
     \item Il pulsante per accedere alla pagina di \emph{RecordListScreenComponent}.
     \item Il pulsante per uscire dall'applicazione.
 \end{itemize}
-Inoltre, il componente che gestisce questa schermata, ovvero \emph{MainScreenComponent}, si serve di \emph{IPCService} per le comunicazioni attraverso, appunto, il canale IPC.
+Inoltre, il componente che gestisce questa schermata, ovvero \emph{MainScreenComponent}, si serve del service \emph{IPCService} per le comunicazioni attraverso le altre componenti dell'applicazione, utilizzando i canali IPC.
 A sua volta:
 \begin{itemize}
     \item \emph{RecordListScreenComponent} è formato da almeno un \emph{RecordListComponent}, poichè la schermata ha almeno la lista globale dei record. Inoltre, utilizza il \emph{HorizontalNavbarComponent} per navigare tra una lista e l'altra.
     \item \emph{RecordListComponent} contiene il nome della lista stessa e utilizza \emph{IPCService} per la comunicazione con il resto dell'applicazione.\\ Ovviamente, contiene anche vari \emph{RecordComponent}.
-    \item \emph{GameListComponent} è formato sia dall' \emph{HorizontalNavbarComponent},\\ poichè gestisce la visualizzazione della lista di giochi disponibili, sia da almeno una \emph{GamePageComponent}, ossia da almeno una pagina relativa ad un gioco.
-    \item Ogni \emph{GamePageComponent} è relativa ad un solo \emph{GameComponent}, le cui informazioni sono caricate da GameUpdaterService. Contiene sia il \emph{GameComponent}, sia i pulsanti per avviare il gioco e per tornare alla schermata principale.
+    \item \emph{GameListComponent} è formato sia dall' \emph{HorizontalNavbarComponent},\\ poichè gestisce la visualizzazione della lista di giochi disponibili, sia da almeno una \emph{GamePageComponent}, ossia da almeno una pagina relativa a un gioco.
+    \item Ogni \emph{GamePageComponent} è relativa a un solo \emph{GameComponent}, le cui informazioni sono caricate da GameUpdaterService. Contiene sia il \emph{GameComponent}, sia i pulsanti per avviare il gioco e per tornare alla schermata principale.
 \end{itemize}
 \emph{GameComponent} e \emph{RecordComponent} utilizzano anche determinate proprietà, che si elencano negli appositi paragrafi rispettivamente in \nameref{subsec:gameComponent} e \nameref{subsec:recordComponent}.
+\newpage
 \subsubsection{GameComponent}
 \label{subsec:gameComponent}
 \begin{figure}[h]
@@ -114,14 +115,14 @@ A sua volta:
     \label{fig:gameComponent}
 \end{figure}
 % immagine dettaglio GameComponent
-GameComponent rappresenta un gioco all'interno dell'applicativo. Contiene tutte le informazioni necessarie per l'avvio e il controllo dello stesso, oltre alle classice informazioni "anagrafiche".\\
+\emph{GameComponent} rappresenta un gioco all'interno dell'applicativo. Contiene tutte le informazioni necessarie per l'avvio e il controllo dello stesso, oltre alle classiche informazioni "anagrafiche".\\
 Un gioco viene rappresentato come:
 \begin{itemize}
     \item ID: l'identificativo del gioco, formato da una stringa.
     \item name: nome del gioco.
     \item type: la categoria del gioco.
     \item gameURL: l'indirizzo dove reperire la finestra di gioco, sia locale che remoto.
-    \item inputType: la tipologia di input, tra "controller" e "touchDigit" (ovvero touch/digitalizer).
+    \item inputType: la tipologia d'input, tra "controller" e "touchDigit" (ovvero touch/digitalizer).
     \item description: opzionale. Descrizione del gioco, con informazioni generali in merito. Se non sono disponibili, il campo assume valore "not_available".
     \item inputMapping: la mappatura dei controlli da utilizzare per giocare.
 \end{itemize}
@@ -136,13 +137,13 @@ Infine, i giochi sono memorizzati nel file \emph{games.json}, della cui struttur
     \label{fig:recordComponent}
 \end{figure}
 % immagine dettaglio RecordComponent
-RecordComponent rappresenta un record memorizzato dall'applicativo.\\ Contiene le informazioni relative ad un punteggio, effettuato da un determinato utente in un determinato gioco.\\
+RecordComponent rappresenta un record memorizzato dall'applicativo.\\ Contiene le informazioni relative a un punteggio, effettuato da un determinato utente in un determinato gioco.\\
 Un record viene rappresentato come:
 \begin{itemize}
     \item userName: il nome dell'utente che ha effettuato un record, formato da un array di tre caratteri.
     \item score: il punteggio eseguito dall'utente.
     \item gameID: l'ID del gioco dove si è effettuato il record.
-    \item dateTime: la data ed ora di conseguimento del record.
+    \item dateTime: la data e ora di conseguimento del record.
 \end{itemize}
 I record sono memorizzati nel file \emph{records.json}, della cui struttura si parlerà sempre in \nameref{subsec:strutturaFile}.
 \subsubsection{Interfaccia di gioco}
@@ -157,7 +158,7 @@ Dovendo implementare due tipologie di gioco, dev'essere necessario poter creare 
 Per questo motivo, viene utilizzata l'interfaccia \emph{GameInterface}, che contiene il necessario per la corretta visualizzazione del gioco.\\
 In particolare, utilizza:
 \begin{itemize}
-    \item \emph{TimerComponent}, attraverso \emph{TimerService}, per la gestione della schermata di caricamento e lo stato di inattività.
+    \item \emph{TimerComponent}, attraverso \emph{TimerService}, per la gestione della schermata di caricamento e lo stato d'inattività.
     \item \emph{LoadingPageComponent} per la visualizzazione della schermata di caricamento.
     \item \emph{PausePageComponent} per visualizzare l'informazione dello stato di pausa del gioco, con le possibilità di riprenderlo o di uscire dallo stesso.
     \item \emph{IPCService} per le comunicazioni tra componenti.
@@ -168,10 +169,10 @@ Questa interfaccia viene implementata da due classi: \emph{GameControllerInterfa
 \paragraph{GameControllerInterfaceComponent}
 \label{paragraph:gamecontrollerinterfacecomponent}
 \emph{GameControllerInterfaceComponent} rappresenta l'interfaccia di gioco per giochi che richiedono l'utilizzo del controller.\\
-Questa classe, oltre ad essere formata dagli elementi che implementa da \emph{GameInterface}, è formata da un controller. Il controller è composto da:
+Questa classe, oltre a essere formata dagli elementi che implementa da \emph{GameInterface}, è formata da un controller. Il controller è composto da:
 \begin{itemize}
-    \item 4 \emph{DPadButtonComponent}, che rappresentano i pulsanti per il movimento all'interno del gioco.
-    \item 4 \emph{ActionButtonComponent}, che rappresentano i pulsanti per le azioni\\ all'interno del gioco.
+    \item Quattro \emph{DPadButtonComponent}, che rappresentano i pulsanti per il movimento all'interno del gioco.
+    \item Quattro \emph{ActionButtonComponent}, che rappresentano i pulsanti per le azioni\\ all'interno del gioco.
     \item Un \emph{PauseButtonComponent} per mettere in pausa il gioco.
 \end{itemize}
 Il controller viene configurato, prima dell'avvio, secondo i comandi previsti per il singolo gioco. Se uno o più pulsanti non vengono configurati per un determinato gioco, essi vengono rimossi dalla visualizzazione, al fine di non creare confusione durante l'utilizzo del gioco.\\
@@ -187,9 +188,9 @@ Un layout di esempio, adatto per questi vincoli, è nell'immagine seguente:
 % immagine mockup controller
 \paragraph{GameTouchDigitalizerInterfaceComponent}
 \emph{GameTouchDigitalizerInterfaceComponent} rappresenta l'interfaccia di gioco per giochi che richiedono l'utilizzo del touch, oppure l'utilizzo del digitalizer.\\
-Si noti come in questa classe non si richiede all'utente se scegliere un'input tramite il sistema touch o tramite il digitalizer. Questa scelta permette all'utente di utilizzare la modalità che più preferisce, senza vincolarlo.\\
-Oltre ad essere formata dagli elementi che implementa da \emph{GameInterface}, la classe è formata da un \emph{PauseButtonComponent} per mettere in pausa il gioco.\\
-Il \emph{PauseButtonComponent} viene posizionato in alto a destra, poichè l'obiettivo è di invadere il meno possibile lo spazio di gioco, in modo da non arrecare disturbo durante il gioco.\\
+Si noti come in questa classe non si richiede all'utente se scegliere un input tramite il sistema touch o tramite il digitalizer. Questa scelta permette all'utente di utilizzare la modalità che più preferisce, senza vincolarlo.\\
+Oltre a essere formata dagli elementi che implementa da \emph{GameInterface}, la classe è formata da un \emph{PauseButtonComponent} per mettere in pausa il gioco.\\
+Il \emph{PauseButtonComponent} viene posizionato in alto a destra, poichè l'obiettivo è d'invadere il meno possibile lo spazio di gioco, in modo da non arrecare disturbo durante il gioco.\\
 La visualizzazione di tale layout è presente nella seguente figura:
 \begin{figure}[h]
     \centering
@@ -211,6 +212,7 @@ Alla notifica di un nuovo record, viene visualizzata la pagina \emph{NewRecordSc
 Nel caso di salvataggio del record, si passa alla pagina \emph{SaveRecordScreenComponent}, utilizzando un \emph{Router}, che si occupa di ricevere il nome dell'utente. Per far ciò, si avvale della classe \emph{InsertArcadeStyleNameComponent}.\\
 Tale classe, che implementa l'interfaccia \emph{InsertName}, prevede l'inserimento dei tre caratteri che compongono il nome utente scegliendo tra i caratteri disponibili, utilizzando gli appositi bottoni.\\
 \emph{SaveRecordScreenComponent} inoltre utilizza anche \emph{TimerComponent} attraverso \emph{TimerService} per la gestione dell'inattività in quella determinata schermata.
+\newpage
 \subsubsection{TimerComponent}
 \begin{figure}[h]
     \centering
@@ -220,7 +222,7 @@ Tale classe, che implementa l'interfaccia \emph{InsertName}, prevede l'inserimen
 \end{figure}
 % immagine dettaglio TimerComponent
 \emph{TimerComponent}, servito in altri componenti attraverso \emph{TimerService}, si occupa della gestione del tempo.\\ 
-Il suo scopo è, dato un tempo espresso in millisecondi, di iniziare il conteggio, e notificare quando il tempo ha raggiunto la fine.\\
+Il suo scopo è, dato un tempo espresso in millisecondi, d'iniziare il conteggio, e notificare quando il tempo ha raggiunto la fine.\\
 Per far questo, imposta un intervallo della durata memorizzata, notificando tramite un \emph{Observable} quando scade.
 \subsubsection{Gestione ENSign11}
 \begin{figure}[h]
@@ -233,7 +235,7 @@ Per far questo, imposta un intervallo della durata memorizzata, notificando tram
 Il device di firma, ovvero l'ENSign11, fornisce le funzioni per interagire con lo stesso attraverso una classe, chiamata \emph{MyTablet}.\\
 Questa classe permette l'interazione con il device, come l'apertura e la chiusura dello stesso. Inoltre, offre le funzioni per ottenere gli input dallo stesso.\\
 Per il recupero dell'input dal device ENSign11, \emph{MyTablet} si serve della classe \emph{TouchHandler} per il recupero di eventi click, hold, scroll...\\
-Questa classe, della quale \emph{MyTablet} ha 10 istanze (una per ogni possibile iterazione, per un massimo di 10 tocchi in contemporanea), rileva se quanto avviene sullo schermo rientra tra i seguenti eventi:
+Questa classe, della quale \emph{MyTablet} ha dieci istanze (una per ogni possibile iterazione, per un massimo di dieci tocchi in contemporanea), rileva se quanto avviene sullo schermo rientra tra i seguenti eventi:
 \begin{itemize}
     \item \textbf{Down}: il primo pacchetto che il driver "emette", indica che il dito è stato appena appoggiato sullo schermo.
     \item \textbf{Click}: indica che il dito è stato appoggiato sullo schermo per un breve periodo di tempo.
@@ -243,18 +245,18 @@ Questa classe, della quale \emph{MyTablet} ha 10 istanze (una per ogni possibile
 \end{itemize}
 I punti, rappresentati da oggetti, che \emph{MyTablet} manda attraverso gli appositi metodi sono:
 \begin{itemize}
-    \item \textbf{Point}: oggetto che contiene le coordinate del punto e lo stato. Questo oggetto viene mandato per gli eventi elencati prima, ad eccezzione dell'evento \textbf{Scroll}, durante i giochi che richiedono l'uso del controller e nell'utilizzo generale dell'applicativo.
-    \item \textbf{ScrollMovement}: oggetto che contiene i punti (attraverso oggetti \emph{Point}) di inizio e fine del movimento, e le variazioni delle coordinate x e y. Questo oggetto viene mandato per l'evento \textbf{Scroll}.
-    \item \textbf{TouchPacket}: oggetto che contiene le coordinate e lo stato di tutti e 10 i tocchi. L'oggetto viene inviato durante l'esecuzione di giochi che non richiedono l'uso del controller.
+    \item \textbf{Point}: oggetto che contiene le coordinate del punto e lo stato. Questo oggetto viene mandato per gli eventi elencati prima, a eccezione dell'evento \textbf{Scroll}, durante i giochi che richiedono l'uso del controller e nell'utilizzo generale dell'applicativo.
+    \item \textbf{ScrollMovement}: oggetto che contiene i punti (attraverso oggetti \emph{Point}) d'inizio e fine del movimento, e le variazioni delle coordinate x e y. Questo oggetto viene mandato per l'evento \textbf{Scroll}.
+    \item \textbf{TouchPacket}: oggetto che contiene le coordinate e lo stato di tutti e dieci i tocchi. L'oggetto viene inviato durante l'esecuzione di giochi che non richiedono l'uso del controller.
     \item \textbf{DigitalizerPacket}: oggetto che contiene le coordinate, lo stato del digitalizer e la pressione applicata dall'utente. L'oggetto viene inviato durante l'esecuzione di giochi che non richiedono l'uso del controller.
 \end{itemize}
 \subsubsection{Servizi di Angular}
 \label{subsec:angularServices}
 ENGaming utilizza i seguenti servizi, offerti da Angular, per l'esecuzione del programma:
 \begin{itemize}
-    \item \textbf{Router}: permette di essere reindirizzati da un componente ad un altro, aggiornando la vista, tramite il metodo \emph{navigate}.
+    \item \textbf{Router}: permette di essere reindirizzati da un componente a un altro, aggiornando la vista, tramite il metodo \emph{navigate}.
     \item \textbf{ChangeDetectorRef}: aggiorna la vista tramite il metodo \emph{detectChanges}.
-    \item \textbf{ActivatedRoute}: permette di recupare l'URL della pagina in cui ci si trova.
+    \item \textbf{ActivatedRoute}: permette di recuperare l'URL della pagina in cui ci si trova.
     \item \textbf{ElectronService}: permette l'utilizzo dei canali IPC e delle funzioni generalmente presenti in Electron.
     \item \textbf{DomSanitizer}: effettua il processo di "pulizia" di un URL, permettendo la visualizzazione del suo contenuto in un elemento \emph{iframe} oppure \emph{object}.
 \end{itemize}
@@ -300,7 +302,7 @@ Dove i giochi con il controller richiedono anche la conoscenza dei tasti che il 
 Inoltre, i giochi possono essere caricati con i sorgenti tramite il percorso relativo degli stessi.
 \newpage
 \subsubsection{Records.json}
-Il file contiene tutti i record effettuati nell'applicativo. Tale file non è condiviso in rete ed è unico per ogni installazione. Quindi, i record possono variare da una macchina ad un'altra.\\
+Il file contiene tutti i record effettuati nell'applicativo. Tale file non è condiviso in rete ed è unico per ogni installazione. Quindi, i record possono variare da una macchina a un'altra.\\
 Questo è l'unico file che viene caricato da ENGaming sia per la lettura che per la scrittura, non richiedendo una scrittura manuale dei dati.\\
 Un esempio di record che il file contiene è il seguente:
 \begin{lstlisting}[language=json,firstnumber=1]
@@ -325,7 +327,7 @@ In particolare:
 \begin{itemize}
     \item architetturalmente, ho scelto di utilizzare il modello Model-View-ViewModel (abbreviato MVVM), in quanto tra le possibili architetture l'ho ritenuta la più adatta per il progetto.
     \item l'utilizzo di \Gls{angl} mi consente di ridurre l'accoppiamento per componenti attraverso l'utilizzo della \emph{Dependency Injection} per l'utilizzo dei servizi.
-    \item l'utilizzo degli \Gls{ipcg} mi permettono di far comunicare gli elementi che compongono l'applicazione, in particolare tra le classi implementate in \Gls{angl} e \Gls{elctr}, attraverso lo scambio di messaggi in appositi canali.\\Tale comportamento è simile al comportamento di un \emph{Observer}.
+    \item l'utilizzo degli \Gls{ipcg} mi permettono di far comunicare gli elementi che compongono l'applicazione, in particolare tra le classi implementate in \Gls{angl} ed \Gls{elctr}, attraverso lo scambio di messaggi in appositi canali.\\Tale comportamento è simile al comportamento di un \emph{Observer}.
     \item per rendere minore la dipendenza tra le componenti, ho scelto di non utilizzare alcun tipo di gerarchia. Questa scelta è dovuta, oltre alla non reale necessità del suo utilizzo, alla limitatezza a livello applicativo, in quanto tra le tecnologie da usare solo \gls{cpp} permette l'uso di una gerarchia.
     \item invece di ricorrere all'utilizzo delle gerarchie, ho scelto di definire le parti comuni attraverso un'interfaccia, che viene poi implementata dalle singole classi che la necessitano.
 \end{itemize}

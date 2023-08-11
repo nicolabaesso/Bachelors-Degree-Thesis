@@ -6,12 +6,12 @@
 
 In questo capitolo si illustrano i vari casi d'uso per il progetto ENGaming.\\
 Per lo studio dei casi d'uso vengono utilizzati dei diagrammi, chiamati diagrammi dei casi d'uso (in inglese \emph{Use Case Diagram}).\\
-Questi diagrammi sono diagrammi dei tipo \gls{umlg}, dedicati alla descrizione delle funzioni offerte da un'applicativo, descrivendoli come sono percepiti e utilizzati dagli attori che interagiscono col sistema stesso.
+Questi diagrammi sono diagrammi \gls{umlg}, dedicati alla descrizione delle funzioni offerte da un applicativo, descrivendoli come sono percepiti e utilizzati dagli attori che interagiscono col sistema stesso.
 
 \subsection{Attori}
 
 Essendo questo prodotto rivolto agli utenti finali, l'unico attore presente nei casi d'uso è l'utente.\\
-Non viene fatta una distinzione tra un utente generico ed un utente autenticato poichè non viene previsto che l'applicativo implementi un sistema di autenticazione.
+Non viene fatta una distinzione tra un utente generico e un utente autenticato poichè non viene previsto che l'applicativo implementi un sistema di autenticazione.
 
 \begin{figure}[h]
     \centering
@@ -19,12 +19,12 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
     \caption{Attore presente nei casi d'uso}
     \label{fig:attore}
 \end{figure}
-
+\newpage
 \subsection{UC01 - Visualizzazione schermata iniziale}
 \begin{figure}[h]
     \centering
     \includegraphics[width=400pt]{images/usecase/UC01.png}
-    \caption{Diagramma per UC01}
+    \caption{Diagramma dei casi d'uso per la schermata iniziale}
     \label{fig:UC01}
 \end{figure}
 \begin{itemize}
@@ -40,12 +40,12 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
         \item UC02 - Visualizzazione lista giochi
     \end{itemize}
 \end{itemize}
-
+\newpage
 \subsection{UC02 - Visualizzazione lista giochi}
 \begin{figure}[h]
     \centering
     \includegraphics[width=400pt]{images/usecase/UC02.png}
-    \caption{Diagramma per UC02}
+    \caption{Diagramma dei casi d'uso per la visualizzazione della lista dei giochi}
     \label{fig:UC02}
 \end{figure}
 \begin{itemize}
@@ -53,18 +53,18 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
     \item Pre-condizioni: l'utente non visualizza la lista dei giochi disponibili.
     \item Post-condizioni: l'utente visualizza la lista dei giochi disponibili.
     \item Scenario principale: \begin{itemize}
-        \item L'utente visualizza una lista di giochi selezionabili. La lista è composta da icone che possono essere selezionate tramite il tocco. Essendo visualizzabili al massimo 10 icone, l'utente può effettuare uno scorrimento a sinistra o a destra per visualizzare le icone non visibili.
+        \item L'utente visualizza una lista di giochi selezionabili. La lista è composta da icone che possono essere selezionate tramite il tocco. Essendo visualizzabili al massimo dieci icone relative ai giochi, l'utente può utilizzare gli appositi pulsanti per visualizzare le icone non visibili.
     \end{itemize}
     \item Include: \begin{itemize}
         \item UC02.1 - Visualizzazione singolo gioco
     \end{itemize}
 \end{itemize}
-\newpage
+
 \subsection{UC02.1 - Visualizzazione singolo gioco}
 \begin{figure}[h]
     \centering
     \includegraphics[width=400pt]{images/usecase/UC02_1.png}
-    \caption{Diagramma per UC02.1}
+    \caption{Diagramma dei casi d'uso per la visualizzazione di un singolo gioco}
     \label{fig:UC02.1}
 \end{figure}
 \begin{itemize}
@@ -77,7 +77,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
             \item Nome del gioco
             \item Tipo di gioco (es. arcade, racing, action...)
             \item Descrizione del gioco, se presente
-            \item Tipologia di input, tra controller e touch/digitalizer
+            \item Tipologia d'input, tra controller e touch/digitalizer
             \item Mappatura dei comandi, se il gioco richiede l'uso del controller
         \end{itemize} Inoltre, la pagina contiene anche un pulsante per tornare alla schermata iniziale.
     \end{itemize}
@@ -91,7 +91,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
 \begin{figure}[h]
     \centering
     \includegraphics[width=400pt]{images/usecase/UC03.png}
-    \caption{Diagramma per UC03}
+    \caption{Diagramma dei casi d'uso per la visualizzazione dei record}
     \label{fig:UC03}
 \end{figure}
 \begin{itemize}
@@ -101,7 +101,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
     \item Scenario principale: \begin{itemize}
         \item L'utente preme il pulsante relativo ai record, posto nell'area principale.
         \item L'utente, in una nuova pagina, visualizza la lista dei record globali, ovvero di tutti i record presenti nel device, ordinati per punteggio. In caso di punteggio uguale, i record vengono ordinati per data ed eventualmente per nome del gioco ascendente.
-        \item L'utente, tramite un apposito bottone, rimane nella stessa pagina e può passare alle liste per gioco, visualizzando i record presenti per i singoli giochi, ordinati per punteggio. In caso di punteggio uguale, i record vengono ordinati per data.
+        \item L'utente, tramite gli appositi pulsanti, rimane nella stessa pagina e può passare alle liste per gioco, visualizzando i record presenti per i singoli giochi, ordinati per punteggio. In caso di punteggio uguale, i record vengono ordinati per data.
     \end{itemize}
     \item Include: \begin{itemize}
         \item UC03.1 - Visualizzazione singolo record globale
@@ -117,7 +117,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
     \item Scenario principale: \begin{itemize}
         \item L'utente, dalla lista dei record presenti, ne vede i dettagli. Ogni record nella lista globale contiene le seguenti informazioni: \begin{itemize}
             \item Posizione in classifica
-            \item Nome dell' utente che ha effettuato il record, composto da 3 lettere
+            \item Nome dell' utente che ha effettuato il record, composto da tre lettere
             \item Punteggio conseguito
             \item Nome del gioco in cui si è fatto il record
         \end{itemize}
@@ -132,7 +132,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
     \item Scenario principale: \begin{itemize}
         \item L'utente, dalla lista dei record presenti, ne vede i dettagli. Ogni record nella lista di un determinato gioco contiene le seguenti informazioni: \begin{itemize}
             \item Posizione in classifica
-            \item Nome dell' utente che ha effettuato il record, composto da 3 lettere
+            \item Nome dell' utente che ha effettuato il record, composto da tre lettere
             \item Punteggio conseguito
         \end{itemize}
     \end{itemize}
@@ -154,7 +154,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
 \begin{figure}[h]
     \centering
     \includegraphics[width=400pt]{images/usecase/UC05.png}
-    \caption{Diagramma per UC05}
+    \caption{Diagramma dei casi d'uso per l'avvio di un gioco}
     \label{fig:UC05}
 \end{figure}
 \begin{itemize}
@@ -179,7 +179,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
     \item Post-condizioni: il caricamento termina e l'utente è pronto per giocare.
     \item Scenario principale: \begin{itemize}
         \item L'utente, che si trova nella schermata di un gioco, avvia il gioco tramite l'apposito pulsante.
-        \item L'utente visualizza una pagina di caricamento.\\ Questa pagina, completamente statica, mostra semplicemente una scritta che avvisa l'utente del caricamento, ad esempio "caricamento in corso".\\ La schermata deve rimanere su schermo per 4 secondi, indipendentemente dall'effettivo caricamento del gioco stesso.
+        \item L'utente visualizza una pagina di caricamento.\\ Questa pagina, completamente statica, mostra semplicemente una scritta che avvisa l'utente del caricamento, ad esempio "caricamento in corso".\\ La schermata deve rimanere su schermo per quattro secondi, indipendentemente dall'effettivo caricamento del gioco stesso.
     \end{itemize}
 \end{itemize}
 
@@ -201,7 +201,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
     \item Post-condizioni: il controller viene caricato e l'utente è pronto per giocare.
     \item Scenario principale: \begin{itemize}
         \item L'utente esce dalla schermata di caricamento.
-        \item L'utente visualizza la pagina del gioco con il controller.\\ Il controller è formato da quattro tasti direzionali, quattro tasti per le azioni ed un tasto di pausa.\\ Il posizionamento dei tasti deve permettere l'utilizzo del gioco senza prendere in mano il device utilizzato.
+        \item L'utente visualizza la pagina del gioco con il controller.\\ Il controller è formato da quattro tasti direzionali, quattro tasti per le azioni e un tasto di pausa.\\ Il posizionamento dei tasti deve permettere l'utilizzo del gioco senza prendere in mano il device utilizzato.
     \end{itemize}
 \end{itemize}
 
@@ -215,12 +215,12 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
         \item L'utente visualizza la pagina del gioco con l'interfaccia per i comandi touch, o per l'utilizzo del digitalizer.\\ L'interfaccia è semplicemente formata dal tasto di pausa.\\ Il posizionamento del tasto deve permettere l'utilizzo del gioco senza occupare lo spazio necessario per lo stesso, od occupandone il meno possibile.
     \end{itemize}
 \end{itemize}
-
+\newpage
 \subsection{UC08 - Interazione gioco}
 \begin{figure}[h]
     \centering
     \includegraphics[width=400pt]{images/usecase/UC08.png}
-    \caption{Diagramma per UC08}
+    \caption{Diagramma dei casi d'uso per l'interazione con un gioco}
     \label{fig:UC08}
 \end{figure}
 \begin{itemize}
@@ -262,7 +262,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
 \begin{figure}[h]
     \centering
     \includegraphics[width=400pt]{images/usecase/UC09.png}
-    \caption{Diagramma per UC09}
+    \caption{Diagramma dei casi d'uso per la pausa di un gioco}
     \label{fig:UC09}
 \end{figure}
 \begin{itemize}
@@ -281,12 +281,12 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
         \item UC12 - Inattività del gioco
     \end{itemize}
 \end{itemize}
-
+\newpage
 \subsection{UC10 - Visualizza schermata di pausa del gioco}
 \begin{figure}[h]
     \centering
     \includegraphics[width=400pt]{images/usecase/UC10.png}
-    \caption{Diagramma per UC10}
+    \caption{Diagramma dei casi d'uso per la schermata di pausa}
     \label{fig:UC10}
 \end{figure}
 \begin{itemize}
@@ -319,7 +319,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
     \item Pre-condizioni: l'utente non sta eseguendo alcuna attività sul gioco.
     \item Post-condizioni: il sistema visualizza la schermata iniziale.
     \item Scenario principale: \begin{itemize}
-        \item Dopo 10 secondi dall'ultimo input, il sistema avvia un cronometro di 4 minuti.
+        \item Dopo 10 secondi dall'ultimo input, il sistema avvia un cronometro di quattro minuti.
         \item Al termine del cronometro, il sistema chiude il gioco e torna alla schermata iniziale.
     \end{itemize}
     \item Estensioni: \begin{itemize}
@@ -333,7 +333,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
     \item Pre-condizioni: l'utente non sta eseguendo alcuna attività sul gioco.
     \item Post-condizioni: l'utente ha eseguendo un'attività sul gioco.
     \item Scenario principale: \begin{itemize}
-        \item Dopo 10 secondi dall'ultimo input, il sistema avvia un cronometro di 4 minuti.
+        \item Dopo 10 secondi dall'ultimo input, il sistema avvia un cronometro di quattro minuti.
         \item L'utente esegue un'attività sul gioco prima dello scadere del cronometro.
         \item Il sistema interrompe il cronometro e lo riporta alla durata iniziale.
     \end{itemize}
@@ -343,7 +343,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
 \begin{figure}[h]
     \centering
     \includegraphics[width=410pt]{images/usecase/UC14.png}
-    \caption{Diagramma per UC14}
+    \caption{Diagramma dei casi d'uso per l'inserimento di un nuovo record}
     \label{fig:UC14}
 \end{figure}
 \begin{itemize}
@@ -421,7 +421,7 @@ Non viene fatta una distinzione tra un utente generico ed un utente autenticato 
     \item Pre-condizioni: l'utente non sta eseguendo alcuna attività \\ sulla schermata di salvataggio record.
     \item Post-condizioni: il record non viene salvato nel sistema.
     \item Scenario principale: \begin{itemize}
-        \item Dopo 10 secondi dall'ultima interazione, il sistema avvia un cronometro di 4 minuti.
+        \item Dopo dieci secondi dall'ultima interazione, il sistema avvia un cronometro di quattro minuti.
         \item Al termine del cronometro, il sistema chiude la schermata di salvataggio record, non salva il record e torna alla schermata iniziale.
     \end{itemize}
 \end{itemize}
@@ -442,19 +442,19 @@ Le tabelle, suddivide per tipologia di requisito, forniscono le seguenti informa
     \hline
     RF01&\makecell{Dev'essere possibile \\ visualizzare la lista \\ di giochi disponibili}&Obbligatorio&UC01,UC02\\
     \hline
-    RF02&\makecell{Dev'essere possibile \\ effettuare uno scorrimento per \\ visualizzare le icone nascoste}&Obbligatorio&UC02\\
+    RF02&\makecell{Dev'essere possibile \\ utilizzare dei pulsanti per \\ visualizzare le icone nascoste}&Obbligatorio&UC02\\
     \hline
     RF03&\makecell{Dev'essere possibile \\ toccare le icone presenti nella \\ schermata iniziale}&Obbligatorio&UC01,UC02,UC03\\
     \hline
-    RF04&\makecell{Dev'essere possibile \\ visualizzare le informazioni \\ relative ad un singolo gioco}&Obbligatorio&UC02.1\\
+    RF04&\makecell{Dev'essere possibile \\ visualizzare le informazioni \\ relative a un singolo gioco}&Obbligatorio&UC02.1\\
     \hline
-    RF05&\makecell{Dev'essere possibile \\ visualizzare la lista \\ dei record globale}&Obbligatorio&UC03\\
+    RF05&\makecell{Dev'essere possibile \\ visualizzare la lista \\ dei record globali}&Obbligatorio&UC03\\
     \hline
     RF06&\makecell{Dev'essere possibile \\ visualizzare la lista \\ dei record per ogni gioco presente}&Obbligatorio&UC03\\
     \hline
-    RF07&\makecell{Dev'essere possibile \\ effettuare uno scorrimento \\ per visualizzare i record nascosti}&Obbligatorio&UC03\\
+    RF07&\makecell{Dev'essere possibile \\ utilizzare dei pulsanti \\ per visualizzare i record nascosti}&Obbligatorio&UC03\\
     \hline
-    RF08&\makecell{Dev'essere possibile \\ visualizzare le informazioni \\ relative ad un singolo record}&Obbligatorio&UC03.1,UC03.2\\
+    RF08&\makecell{Dev'essere possibile \\ visualizzare le informazioni \\ relative a un singolo record}&Obbligatorio&UC03.1,UC03.2\\
     \hline
     RF09&\makecell{Dev'essere possibile \\ ritornare alla schermata iniziale}&Obbligatorio&UC04\\
     \hline
@@ -462,7 +462,7 @@ Le tabelle, suddivide per tipologia di requisito, forniscono le seguenti informa
     \hline
     RF11&\makecell{Dev'essere possibile \\ visualizzare una pagina \\ di caricamento}&Obbligatorio&UC06\\
     \hline
-    RF12&\makecell{La pagina di caricamento \\ dev'essere visibile \\ per almeno 4 secondi}&Obbligatorio&UC06\\
+    RF12&\makecell{La pagina di caricamento \\ dev'essere visibile \\ per almeno quattro secondi}&Obbligatorio&UC06\\
     \hline
     RF13&\makecell{Dev'essere possibile \\ l'utilizzo di \\ un controller virtuale}&Obbligatorio&UC07.1\\
     \hline
@@ -490,11 +490,11 @@ Le tabelle, suddivide per tipologia di requisito, forniscono le seguenti informa
     \hline
     RF25&\makecell{Dev'essere possibile \\ chiudere un gioco e tornare \\ alla schermata iniziale}&Obbligatorio&UC10,UC04\\
     \hline
-    RF26&\makecell{Il sistema deve tornare \\ alla schermata iniziale \\ dopo 4 minuti di inattività}&Obbligatorio&UC12,UC19\\
+    RF26&\makecell{Il sistema deve tornare \\ alla schermata iniziale \\ dopo quattro minuti d'inattività}&Obbligatorio&UC12,UC19\\
     \hline
-    RF27&\makecell{Il sistema deve far partire \\ il cronometro di inattività \\ dopo 10 secondi dall'ultimo input}&Obbligatorio&UC12,UC19\\
+    RF27&\makecell{Il sistema deve far partire \\ il cronometro d'inattività \\ dopo dieci secondi dall'ultimo input}&Obbligatorio&UC12,UC19\\
     \hline
-    RF28&\makecell{Il sistema deve interrompere \\ il cronometro di inattività all'azione \\ dell'utente, prima del suo scadere}&Obbligatorio&UC13\\
+    RF28&\makecell{Il sistema deve interrompere \\ il cronometro d'inattività all'azione \\ dell'utente, prima del suo scadere}&Obbligatorio&UC13\\
     \hline
     RF29&\makecell{Dev'essere possibile \\ memorizzare un nuovo record}&Obbligatorio&UC14\\
     \hline
@@ -510,7 +510,7 @@ Le tabelle, suddivide per tipologia di requisito, forniscono le seguenti informa
     \hline
     RF35&\makecell{L'utente deve poter \\ inserire la sua firma}&Opzionale&UC18\\
     \hline
-    RF36&\makecell{Il sistema non deve \\ salvare il record \\ in caso di inattività}&Obbligatorio&UC19\\
+    RF36&\makecell{Il sistema non deve \\ salvare il record \\ in caso d'inattività}&Obbligatorio&UC19\\
     \hline
     \caption{Tabella dei requisiti funzionali}
 \end{longtable}
@@ -521,7 +521,7 @@ Le tabelle, suddivide per tipologia di requisito, forniscono le seguenti informa
         \hline
         RQ01 &\makecell{Dev'essere fornita la documentazione necessaria \\ per l'utilizzo del prodotto} & Obbligatorio\\
         \hline
-        RQ02 & \makecell{Dev'essere fornita la documentazione necessaria \\ per la manuntenzione del prodotto} & Obbligatorio\\ 
+        RQ02 & \makecell{Dev'essere fornita la documentazione necessaria \\ per la manutenzione del prodotto} & Obbligatorio\\ 
         \hline
         RQ03 & \makecell{Il prodotto dev'essere versionato e pubblicato \\ sulle piattaforme aziendali} & Obbligatorio\\
         \hline
@@ -532,7 +532,7 @@ Le tabelle, suddivide per tipologia di requisito, forniscono le seguenti informa
     \hline
     \thead{Codice}&\thead{Requisito}&\thead{Tipologia}\\
     \hline
-    RV01 & \makecell{L'interfaccia grafica del prodotto \\ dev'essere sviluppata utilizzando \\ i linguaggi HTML, CSS, Javascript e Typescript} & Obbligatorio\\
+    RV01 & \makecell{L'interfaccia grafica del prodotto \\ dev'essere sviluppata utilizzando \\ i linguaggi HTML, CSS, JavaScript e TypeScript} & Obbligatorio\\
     \hline
     RV02 & \makecell{L'interfaccia grafica del prodotto \\ dev'essere sviluppata utilizzando \\ il framework Angular} & Obbligatorio\\
     \hline
