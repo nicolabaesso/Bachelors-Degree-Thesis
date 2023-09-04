@@ -5,12 +5,12 @@
 \section{Casi d'uso}
 
 In questo capitolo si illustrano i vari casi d'uso per il progetto ENGaming.\\
-Per lo studio dei casi d'uso vengono utilizzati dei diagrammi, chiamati diagrammi dei casi d'uso (in inglese \emph{Use Case Diagram}).\\
+Per lo studio dei casi d'uso vengono utilizzati dei diagrammi, chiamati diagrammi dei casi d'uso (in inglese \emph{Use Case Diagram}).
 Questi diagrammi sono diagrammi \gls{umlg}, dedicati alla descrizione delle funzioni offerte da un applicativo, descrivendoli come sono percepiti e utilizzati dagli attori che interagiscono col sistema stesso.
 
 \subsection{Attori}
 
-Essendo questo prodotto rivolto agli utenti finali, l'unico attore presente nei casi d'uso è l'utente.\\
+Essendo questo prodotto rivolto agli utenti finali, l'unico attore presente nei casi d'uso è l'utente.
 Non viene fatta una distinzione tra un utente generico e un utente autenticato poichè non viene previsto che l'applicativo implementi un sistema di autenticazione.
 
 \begin{figure}[h]
@@ -179,7 +179,7 @@ Non viene fatta una distinzione tra un utente generico e un utente autenticato p
     \item Post-condizioni: il caricamento termina e l'utente è pronto per giocare.
     \item Scenario principale: \begin{itemize}
         \item L'utente, che si trova nella schermata di un gioco, avvia il gioco tramite l'apposito pulsante.
-        \item L'utente visualizza una pagina di caricamento.\\ Questa pagina, completamente statica, mostra semplicemente una scritta che avvisa l'utente del caricamento, ad esempio "caricamento in corso".\\ La schermata deve rimanere su schermo per quattro secondi, indipendentemente dall'effettivo caricamento del gioco stesso.
+        \item L'utente visualizza una pagina di caricamento. Questa pagina, completamente statica, mostra semplicemente una scritta che avvisa l'utente del caricamento, ad esempio "caricamento in corso". La schermata deve rimanere su schermo per quattro secondi, indipendentemente dall'effettivo caricamento del gioco stesso.
     \end{itemize}
 \end{itemize}
 
@@ -201,7 +201,7 @@ Non viene fatta una distinzione tra un utente generico e un utente autenticato p
     \item Post-condizioni: il controller viene caricato e l'utente è pronto per giocare.
     \item Scenario principale: \begin{itemize}
         \item L'utente esce dalla schermata di caricamento.
-        \item L'utente visualizza la pagina del gioco con il controller.\\ Il controller è formato da quattro tasti direzionali, quattro tasti per le azioni e un tasto di pausa.\\ Il posizionamento dei tasti deve permettere l'utilizzo del gioco senza prendere in mano il device utilizzato.
+        \item L'utente visualizza la pagina del gioco con il controller. Il controller è formato da quattro tasti direzionali, quattro tasti per le azioni e un tasto di pausa. Il posizionamento dei tasti deve permettere l'utilizzo del gioco senza prendere in mano il device utilizzato.
     \end{itemize}
 \end{itemize}
 
@@ -212,7 +212,7 @@ Non viene fatta una distinzione tra un utente generico e un utente autenticato p
     \item Post-condizioni: l'interfaccia viene caricata e l'utente è pronto per giocare.
     \item Scenario principale: \begin{itemize}
         \item L'utente esce dalla schermata di caricamento.
-        \item L'utente visualizza la pagina del gioco con l'interfaccia per i comandi touch, o per l'utilizzo del digitalizer.\\ L'interfaccia è semplicemente formata dal tasto di pausa.\\ Il posizionamento del tasto deve permettere l'utilizzo del gioco senza occupare lo spazio necessario per lo stesso, od occupandone il meno possibile.
+        \item L'utente visualizza la pagina del gioco con l'interfaccia per i comandi touch, o per l'utilizzo del digitalizer. L'interfaccia è semplicemente formata dal tasto di pausa. Il posizionamento del tasto deve permettere l'utilizzo del gioco senza occupare lo spazio necessario per lo stesso, od occupandone il meno possibile.
     \end{itemize}
 \end{itemize}
 \newpage
@@ -294,7 +294,7 @@ Non viene fatta una distinzione tra un utente generico e un utente autenticato p
     \item Pre-condizioni: L'utente ha messo in pausa il gioco.
     \item Post-condizioni: L'utente è informato dello stato di pausa del gioco.
     \item Scenario principale: \begin{itemize}
-        \item L'utente visualizza una pagina che informa dello stato di pausa del gioco.\\ La pagina contiene una scritta che avvisa l'utente dello stato di pausa del gioco e due pulsanti.\\ Il primo pulsante permette di ricominciare a giocare, togliendo il gioco dallo stato di pausa, mentre il secondo permette di chiudere il gioco e tornare alla schermata iniziale.
+        \item L'utente visualizza una pagina che informa dello stato di pausa del gioco. La pagina contiene una scritta che avvisa l'utente dello stato di pausa del gioco e due pulsanti. Il primo pulsante permette di ricominciare a giocare, togliendo il gioco dallo stato di pausa, mentre il secondo permette di chiudere il gioco e tornare alla schermata iniziale.
     \end{itemize}
     \item Include: \begin{itemize}
         \item UC04 - Ritorno alla schermata iniziale
@@ -384,7 +384,7 @@ Non viene fatta una distinzione tra un utente generico e un utente autenticato p
     \item Pre-condizioni: l'utente ha effettuato un nuovo record in un gioco.
     \item Post-condizioni: l'utente sta visualizzando la schermata relativa al salvataggio del record.
     \item Scenario principale: \begin{itemize}
-        \item L'utente visualizza la schermata che lo informa della creazione di un nuovo record, e ne propone il salvataggio.\\ Questa schermata, oltre a riportare il punteggio del record, propone tre opzioni: il salvataggio del record tramite nome, il salvataggio del record tramite firma e il non salvataggio del record.
+        \item L'utente visualizza la schermata che lo informa della creazione di un nuovo record, e ne propone il salvataggio. Questa schermata, oltre a riportare il punteggio del record, propone tre opzioni: il salvataggio del record tramite nome, il salvataggio del record tramite firma e il non salvataggio del record.
     \end{itemize}
 \end{itemize}
 
@@ -394,7 +394,7 @@ Non viene fatta una distinzione tra un utente generico e un utente autenticato p
     \item Pre-condizioni: l'utente vuole salvare il record con il proprio nome.
     \item Post-condizioni: l'utente ha inserito il proprio nome correttamente.
     \item Scenario principale: \begin{itemize}
-        \item L'utente visualizza la schermata di salvataggio tramite nome.\\ Il nome può essere inserito tramite due pulsanti per carattere, ognuno dei quali passa al carattere precedente o al successivo.\\ Una volta che l'utente è soddisfatto, può premere l'apposito pulsante per il salvataggio del nome.
+        \item L'utente visualizza la schermata di salvataggio tramite nome. Il nome può essere inserito tramite due pulsanti per carattere, ognuno dei quali passa al carattere precedente o al successivo. Una volta che l'utente è soddisfatto, può premere l'apposito pulsante per il salvataggio del nome.
     \end{itemize}
     \item Estensioni: \begin{itemize}
         \item UC19 - Mancato salvataggio record per inattività
@@ -408,7 +408,7 @@ Non viene fatta una distinzione tra un utente generico e un utente autenticato p
     \item Pre-condizioni: l'utente vuole salvare il record con la propria firma.
     \item Post-condizioni: l'utente ha inserito la propria firma correttamente.
     \item Scenario principale: \begin{itemize}
-        \item L'utente visualizza la schermata di salvataggio tramite firma.\\ La firma può essere inserita sia tramite l'utilizzo del touch screen, quindi firmando con il dito, sia tramite l'utilizzo del digitalizer.\\ Una volta che l'utente è soddisfatto, può premere l'apposito pulsante per il salvataggio della firma.
+        \item L'utente visualizza la schermata di salvataggio tramite firma. La firma può essere inserita sia tramite l'utilizzo del touch screen, quindi firmando con il dito, sia tramite l'utilizzo del digitalizer. Una volta che l'utente è soddisfatto, può premere l'apposito pulsante per il salvataggio della firma.
     \end{itemize}
     \item Estensioni: \begin{itemize}
         \item UC19 - Mancato salvataggio record per inattività
@@ -418,7 +418,7 @@ Non viene fatta una distinzione tra un utente generico e un utente autenticato p
 \subsection{UC19 - Mancato salvataggio record per inattività}
 \begin{itemize}
     \item Attore principale: Utente
-    \item Pre-condizioni: l'utente non sta eseguendo alcuna attività \\ sulla schermata di salvataggio record.
+    \item Pre-condizioni: l'utente non sta eseguendo alcuna attività  sulla schermata di salvataggio record.
     \item Post-condizioni: il record non viene salvato nel sistema.
     \item Scenario principale: \begin{itemize}
         \item Dopo dieci secondi dall'ultima interazione, il sistema avvia un cronometro di quattro minuti.
@@ -427,12 +427,12 @@ Non viene fatta una distinzione tra un utente generico e un utente autenticato p
 \end{itemize}
 \newpage
 \section{Requisiti}
-In questa sezione vengono elencati i requisiti analizzati per l'applicativo.\\
+In questa sezione vengono elencati i requisiti analizzati per l'applicativo.
 Le tabelle, suddivide per tipologia di requisito, forniscono le seguenti informazioni:
 \begin{itemize}
-    \item \textbf{Codice}, che indica la tipologia di requisito (tra F=funzionale, Q=qualità e V=vincolo) e il numero del requisito.
-    \item \textbf{Requisito}, dove si indica il requisito vero e proprio.
-    \item \textbf{Tipologia}, ovvero se il requisito indicato è obbligatorio oppure opzionale.
+    \item \textbf{Codice}, che indica la tipologia di requisito (tra F=funzionale, Q=qualità e V=vincolo) e il numero del requisito;
+    \item \textbf{Requisito}, dove si indica il requisito vero e proprio;
+    \item \textbf{Tipologia}, ovvero se il requisito indicato è obbligatorio oppure opzionale;
     \item \textbf{Caso d'uso} di riferimento (solo per i requisiti funzionali).
 \end{itemize}
 \subsection{Requisiti funzionali}

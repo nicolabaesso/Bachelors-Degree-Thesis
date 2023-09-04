@@ -4,8 +4,8 @@
 \section{Tecnologie e strumenti}
 \label{sec:tecnologie-strumenti}
 
-In questa sezione, si descrivono le tecnologie utilizzate sia per ENGaming sia per i giochi.\\
-Infatti, nonostante i giochi non necessitino di modifiche per il funzionamento in ENGaming, ritengo comunque opportuno citarne le tecnologie che utilizzano, che ritengo possano essere interessanti.
+In questa sezione, si descrivono le tecnologie utilizzate sia per ENGaming sia per i giochi.
+Infatti, nonostante i giochi non necessitino di modifiche per il funzionamento in ENGaming, trovo comunque opportuno citarne le tecnologie che utilizzano, che ritengo possano essere interessanti.
 
 \subsection{Tecnologie e strumenti del prodotto}
 
@@ -16,9 +16,9 @@ Infatti, nonostante i giochi non necessitino di modifiche per il funzionamento i
     \caption{Logo di Electron}
     \label{fig:electron}
 \end{figure}
-\gls{elctr} viene utilizzato per creare l'applicazione desktop, visualizzandola nello schermo dell'ENSign11.\\
+\gls{elctr} viene utilizzato per creare l'applicazione desktop, visualizzandola nello schermo dell'ENSign11.
 Inoltre, si occupa della comunicazione tra il backend e il frontend dell'applicazione, attraverso canali di \gls{ipcg}.
-
+\newpage
 \subsubsection{Angular}
 \label{subsec:angular}
 \begin{figure}[h]
@@ -27,11 +27,11 @@ Inoltre, si occupa della comunicazione tra il backend e il frontend dell'applica
     \caption{Logo di Angular}
     \label{fig:angular}
 \end{figure}
-\gls{angl} è il framework scelto per la realizzazione della parte visiva dell'applicazione.\\
+\gls{angl} è il framework scelto per la realizzazione della parte visiva dell'applicazione.
 Angular permette la creazione di Componenti, ovvero di elementi o pagine, dove sono presenti:
 \begin{itemize}
-    \item un file \gls{html}, per la visualizzazione del componente.
-    \item un foglio di stile (\gls{css}/SASS/LESS) per gli effetti grafici.
+    \item un file \gls{html}, per la visualizzazione del componente;
+    \item un foglio di stile (\gls{css}/SASS/LESS) per gli effetti grafici;
     \item un file \gls{tsc}, per definire il comportamento del componente.
 \end{itemize}
 Inoltre, permette l'utilizzo di Servizi per il trasferimento di dati tra componenti.
@@ -42,8 +42,8 @@ Inoltre, permette l'utilizzo di Servizi per il trasferimento di dati tra compone
     \caption{Logo di TypeScript}
     \label{fig:typescript}
 \end{figure}
-\gls{tsc} viene utilizzato sia da Electron che da Angular (da quest'ultimo per la definizione del comportamento di componenti e servizi).\\
-Ciò che caratterizza \gls{tsc} da \gls{js} è la tipizzazione delle variabili, elemento che trovo molto utile sopratutto se si è in precedenza lavorato con linguaggi di programmazione come Java e C++, come nel mio caso.\\
+\gls{tsc} viene utilizzato sia da Electron che da Angular (da quest'ultimo per la definizione del comportamento di componenti e servizi).
+Ciò che caratterizza \gls{tsc} da \gls{js} è la tipizzazione delle variabili, elemento che trovo molto utile sopratutto se si è in precedenza lavorato con linguaggi di programmazione come Java e C++, come nel mio caso.
 I sorgenti scritti in questo linguaggio devono poi essere compilati per generare il file \gls{js} effettivamente letto dal browser.
 
 \subsubsection{C++}
@@ -62,13 +62,13 @@ I sorgenti scritti in questo linguaggio devono poi essere compilati per generare
     \caption{Logo delle Node-API}
     \label{fig:nodeapi}
 \end{figure}
-Le \gls{napi} sono utilizzate per rendere la parte in C++ "usabile" dalla parte sviluppata in Electron.\\
+Le \gls{napi} sono utilizzate per rendere la parte in C++ "usabile" dalla parte sviluppata in Electron.
 Infatti, senza di esse, non sarebbe possibile utilizzare i metodi per l'interazione con il device.
 
 \subsubsection{Electron-Forge}
-\gls{elctrForge} viene utilizzato per creare degli installer, o dei pacchetti, a seconda del sistema operativo in cui si va a compilare il progetto.\\
-Tale strumento permette di compilare l'applicazione per Windows, Linux e MacOS, e ciò rende ENGaming un applicativo multipiattaforma.
-
+\gls{elctrForge} viene utilizzato per creare degli installer, o dei pacchetti, a seconda del sistema operativo in cui si va a compilare il progetto.
+Tale strumento permette di compilare l'applicazione per Windows, Linux e MacOS, e ciò permette di definire ENGaming come un applicativo multipiattaforma.
+\newpage
 \subsection{Tecnologie e strumenti dei giochi}
 
 \subsubsection{HTML-CSS-JavaScript}
@@ -78,8 +78,8 @@ Tale strumento permette di compilare l'applicazione per Windows, Linux e MacOS, 
     \caption{Loghi di HTML, CSS e JavaScript}
     \label{fig:HTMLCSSJS}
 \end{figure}
-I giochi che ENGaming esegue sono semplici giochi eseguibili anche su browser. Per tale motivo, sono scritti con \gls{html} per la struttura (generalmente composta da canvas), \gls{css} per lo stile e \gls{js} per il gioco vero e proprio.\\
-Per usufruire al meglio di tutte le funzionalità che l'applicativo offre, in particolare per poter salvare i record relativi ai giochi, è necessario che i giochi stessi implementino una piccola modifica, che consiste nell'inviare un messaggio all'applicativo.\\
+I giochi che ENGaming esegue sono semplici giochi eseguibili anche su browser. Per tale motivo, sono scritti con \gls{html} per la struttura (generalmente composta da canvas), \gls{css} per lo stile e \gls{js} per il gioco vero e proprio.
+Per usufruire al meglio di tutte le funzionalità che l'applicativo offre, in particolare per poter salvare i record relativi ai giochi, è necessario che i giochi stessi implementino una piccola modifica, che consiste nell'inviare un messaggio all'applicativo.
 Infatti, essendo il gioco visualizzato all'interno di una pagina (attraverso un elemento iframe), è necessario che il gioco mandi il punteggio "in alto", utilizzando la seguente riga di codice:
 \begin{lstlisting}
     window.top.postMessage({type:'gameIsOver',data:score});
@@ -93,8 +93,8 @@ Questo comando manda un messaggio con il punteggio conseguito. Il tipo (in quest
     \caption{Logo di WebAssembly}
     \label{fig:webassembly}
 \end{figure}
-Nel caso si volesse eseguire un classico nell'ENGaming (ad esempio, Doom), bisogna prima passare per \gls{webassembly}, in modo da renderlo eseguibile su un browser.\\
-Le modifiche da fare per il funzionamento dipendono dal singolo gioco, è in ogni caso indispensabile essere in possesso dei sorgenti.\\
+Nel caso si volesse eseguire un classico nell'ENGaming (ad esempio, Doom), bisogna prima passare per \gls{webassembly}, in modo da renderlo eseguibile su un browser.
+Le modifiche da fare per il funzionamento dipendono dal singolo gioco, è in ogni caso indispensabile essere in possesso dei sorgenti.
 Tale gioco viene poi letto da un normale file \gls{js} attraverso il file con estensione .wasm, che non permette di effettuare la modifica per la ricezione del punteggio, quindi per tali giochi non si possono avere record salvati.
 
 \include{ProgettazioneTecnica/ENGaming_progettazione}
